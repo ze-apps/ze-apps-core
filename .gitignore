@@ -1,0 +1,22 @@
+/tmp
+/config
+
+# dependencies
+/vendor
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+
+# System Files
+.DS_Store
+Thumbs.db
+
+composer.lock
+
+# app folder
+/app/*
+
+# cache
+/public/cache/*
