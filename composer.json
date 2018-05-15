@@ -1,0 +1,21 @@
+{
+  "name": "nicolasramel/zeapps",
+  "description": "Ze-apps Framework.",
+  "keywords": ["framework", "ze-apps"],
+  "license": "AGPL",
+  "type": "project",
+  "require": {
+    "php": ">=7.0.0",
+    "illuminate/database": "*",
+    "illuminate/view": "*"
+  },
+  "autoload": {
+    "classmap": [
+    ],
+    "psr-4": {
+      "App\\": "app/",
+      "Zeapps\\": "system/",
+      "Config\\": "config/"
+    }
+  }
+}

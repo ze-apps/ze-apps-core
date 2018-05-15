@@ -1,0 +1,75 @@
+#!/usr/bin/env php
+<?php
+require_once 'vendor/autoload.php';
+
+use Config\Database;
+use Zeapps\Core\Application;
+
+// initialize application
+chdir("public/");
+Application::init();
+chdir(BASEPATH);
+
+// load helpers
+require_once SYSDIR . 'helpers/utilities.php';
+
+
+// create directories
+Application::createDirectories();
+
+
+
+// open connection to database
+if (is_file(BASEPATH . "config/Database.php")) {
+    Database::getConnection();
+} else {
+    errorDisplay("Error to connect database");
+}
+
+
+
+## commentaire test 4
+
+
+if (!isset($argv[1])) {
+    echo "You must provide a comman\n" ;
+} else {
+    $ArgData = explode(":", $argv[1]);
+
+    $functionCommande = isset($ArgData[1])?$ArgData[1]:"execute" ;
+    $command = $ArgData[0] ;
+    if (strpos($command, "/") !== false) {
+        $arrCommand = explode("/", $command);
+        if (count($arrCommand) == 2) {
+            $command = $arrCommand[1] ;
+            $module = "App\\" . ucfirst($arrCommand[0]) ;
+        } else {
+            errorDisplay("Error namespace not available");
+        }
+
+    } else {
+        $module = "Zeapps" ;
+    }
+
+    $classNameSpace = $module . "\\Console\\" . ucfirst($command) . "Console" ;
+
+    if (class_exists($classNameSpace)) {
+        if (method_exists ( $classNameSpace, $functionCommande)) {
+            $classNameSpace::$functionCommande() ;
+        } else {
+            errorDisplay ("method (" . $functionCommande . ") doesn't exists in class (" . $classNameSpace .")") ;
+        }
+    } else {
+        errorDisplay ("class not available") ;
+    }
+}
+
+
+
+
+function errorDisplay($info) {
+    echo "**************************\n";
+    echo "\033[0;31m " . $info . "\033[0m\n" ;
+    echo "**************************\n";
+    exit();
+}
