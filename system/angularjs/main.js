@@ -7,6 +7,12 @@ app.controller("MainCtrl", ["$scope", "$location", "$rootScope", "zeHttp", "$int
 
 		menu('essentiel', '');
 
+		$rootScope.currentVersion = '0.0.1';
+		$rootScope.branchVersion = 'PROD';
+		$rootScope.urlUpdateCheck = 'http://zeappsupdate.192.168.1.42.xip.io';
+		$rootScope.instanceSerial = 'c1391740-d530-40f5-be6b-cb1607c3fe90';
+		$rootScope.updateAvailable = false;
+		$rootScope.updateAvailableData = {};
 		$rootScope.debug = false;
 		$rootScope.defaultLang = "fr-fr";
 
@@ -45,6 +51,20 @@ app.controller("MainCtrl", ["$scope", "$location", "$rootScope", "zeHttp", "$int
 
 		/********** Dropdown User menu *********/
 		$scope.toggleDropdown = toggleDropdown;
+
+
+
+
+		/********* search new version available ***********/
+        $.get($rootScope.urlUpdateCheck + "/core/" + $rootScope.currentVersion + "/" + $rootScope.branchVersion + "/" + $rootScope.instanceSerial, function (data) {
+            if (data.bug || data.minor || data.major) {
+                $rootScope.updateAvailable = true;
+                $rootScope.updateAvailableData = data;
+
+                // TODO : envoyer une notiifcaiton à l'application qu'une mise à jour est disponible
+			}
+        });
+
 
 
 
