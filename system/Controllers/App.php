@@ -8,6 +8,7 @@ use Zeapps\Core\Session;
 
 use Zeapps\Models\Token ;
 use Zeapps\Models\User ;
+use Zeapps\Models\Groups;
 use Zeapps\Models\UserGroups;
 use Zeapps\Models\Module ;
 use Zeapps\Models\Internationalization;
@@ -165,13 +166,7 @@ class App extends Controller
         $rights = [];
 
         if($user = User::getUserByToken(Session::get('token'))) {
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            // TODO : gérer la liaison entre les utilisateurs et les groupes
-            /*if ($groups = $this->user_groups->all(array('id_user' => $user->id))) {
+            if ($groups = Groups::join('zeapps_user_groups', 'zeapps_groups.id', '=', 'zeapps_user_groups.id_group')->where('zeapps_user_groups.id_user', $user->id)->get()) {
                 foreach ($groups as $group) {
                     if ($group->rights !== "") {
                         $r = json_decode($group->rights);
@@ -183,7 +178,7 @@ class App extends Controller
                     }
                 }
                 $rights = array_unique($rights);
-            }*/
+            }
         }
 
         foreach ($data['menuEssential'] as $key => $menuItem) {
@@ -213,6 +208,7 @@ class App extends Controller
                 }
             }
         }
+
 
         foreach($data['menuTopCol2'] as &$menuSpace){
             foreach ($menuSpace["item"] as $key => $menuItem) {
@@ -568,6 +564,7 @@ class App extends Controller
 
         $data["menuTopCol1"] = array();
         $data["menuTopCol2"] = array();
+
 
         for ($col = 1; $col <= 2; $col++) {
 
