@@ -137,12 +137,12 @@
                             <span ng-click="toggleNotification()" class="pointer">
                                 <span class="fa fa-fw fa-bell" aria-hidden="true"></span>
                                 <span ng-show="notificationsNotSeen() != 0">
-                                    <span class="label label-danger label-as-badge">{{ "{{ notificationsNotSeen() }" . "}" }}</span>
+                                    <span class="label label-danger label-as-badge">@{{ notificationsNotSeen() }}</span>
                                 </span>
                             </span>
 
                                 <span ng-click="toggleDropdown()" class="pointer">
-                                    {{  "{{ user.firstname[0] }" . "}" }}. {{  "{{ user.lastname }" . "}" }}
+                                    @{{user.firstname[0]}}. @{{user.lastname}}
                                 <span class="fa fa-fw" ng-class="dropdown ? 'fa-caret-up' : 'fa-caret-down'" aria-hidden="true"></span>
                             </span>
 
@@ -204,16 +204,16 @@
                     <li ng-repeat="(moduleName, module) in notifications" ng-class="notification.status">
                     <span class="module-name">
                         <span class="fa fa-times pointer pull-right" aria-hidden="true" ng-click="readAllNotificationsFrom(moduleName)"></span>
-                        {{ "{{ moduleName }" . "}" }}
+                        @{{ moduleName }}
                     </span>
                         <ul>
                             <li ng-repeat="notification in module.notifications | limitTo:'15'" class="notification">
                                 <span class="fa fa-times pointer pull-right" aria-hidden="true" ng-click="readNotification(notification)"></span>
-                                <a href="{{ "{{ notification.url }" . "}" }}" ng-if="notification.url">
-                                    {{ "{{ notification.message }" . "}" }}
+                                <a href="@{{ notification.url }}" ng-if="notification.url">
+                                    @{{ notification.message }}
                                 </a>
                                 <span ng-if="!notification.url">
-                                {{ "{{ notification.message }" . "}" }}
+                                @{{ notification.message }}
                             </span>
                             </li>
                             <li ng-if="module.notifications.length > 15">
