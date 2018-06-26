@@ -85,5 +85,9 @@ class Application
         if (!is_dir(BASEPATH . "tmp/")) {
             recursive_mkdir(BASEPATH . "tmp/");
         }
+
+        if (!is_dir(BASEPATH . "App/")) {
+            recursive_mkdir(BASEPATH . "App/");
+        }
     }
 }
