@@ -15,7 +15,8 @@
     "psr-4": {
       "App\\": "app/",
       "Zeapps\\": "system/",
-      "Config\\": "config/"
+      "Config\\": "config/",
+      "Cache\\": "cache/"
     }
   }
 }
