@@ -75,7 +75,7 @@ class Application
         define('SYSDIR', BASEPATH . 'system/');
         //define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
-        define('MODULEPATH', realpath(dirname(__FILE__) . '/../../app/') . '/');
+        define('MODULEPATH', realpath(dirname(__FILE__) . '/../../App/') . '/');
 
         define('PUBLICPATH', realpath(dirname(__FILE__) . '/../../public/') . '/');
     }
