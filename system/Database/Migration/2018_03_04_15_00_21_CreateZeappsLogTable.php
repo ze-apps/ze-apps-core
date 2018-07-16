@@ -9,15 +9,16 @@ class CreateZeappsLogTable
     public function up()
     {
        Capsule::schema()->create('zeapps_log', function (Blueprint $table) {
-            $table->increments('id_log');
-            $table->tinyInteger('severity');
-            $table->integer('error_code');
-            $table->text('message');
-            $table->string('object_type', 32);
-            $table->integer('object_id');
-            $table->integer('id_employee');
-            $table->dateTime('date_add');
-            $table->dateTime('date_upd');
+            $table->increments('id');
+           $table->tinyInteger('severity', false, true)->default(0);
+           $table->integer('error_code', false, true)->default(0);
+           $table->text('message')->default("");
+           $table->string('object_type', 32)->default("");
+           $table->integer('object_id', false, true)->default(0);
+           $table->integer('id_employee', false, true)->default(0);
+
+           $table->timestamps();
+           $table->softDeletes();
         });
     }
 
