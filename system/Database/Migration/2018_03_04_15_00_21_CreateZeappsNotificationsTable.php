@@ -18,6 +18,7 @@ class CreateZeappsNotificationsTable
             $table->tinyInteger('seen');
             $table->tinyInteger('read_state');
             $table->string('link', 255);
+
             $table->timestamps();
             $table->softDeletes();
         });

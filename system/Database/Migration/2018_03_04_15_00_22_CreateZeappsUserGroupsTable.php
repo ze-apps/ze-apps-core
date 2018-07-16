@@ -12,6 +12,7 @@ class CreateZeappsUserGroupsTable
             $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_group');
+
             $table->timestamps();
             $table->softDeletes();
         });

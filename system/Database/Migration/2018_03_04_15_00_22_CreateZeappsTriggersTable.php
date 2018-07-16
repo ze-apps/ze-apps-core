@@ -12,6 +12,7 @@ class CreateZeappsTriggersTable
             $table->increments('id');
             $table->string('label', 255);
             $table->string('module', 255);
+
             $table->timestamps();
             $table->softDeletes();
         });

@@ -12,6 +12,7 @@ class CreateZeappsGroupsTable
             $table->increments('id');
             $table->string('label', 255);
             $table->text('rights');
+
             $table->timestamps();
             $table->softDeletes();
         });

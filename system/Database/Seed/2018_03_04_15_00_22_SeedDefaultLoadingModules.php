@@ -7,6 +7,9 @@ class SeedDefaultLoadingModules
 {
     public function run()
     {
+        Capsule::table('zeapps_modules')->truncate();
+
+
         Capsule::table('zeapps_modules')->insert([
             'module_id' => "com_zeapps_contact",
             'label' => "com_zeapps_contact",

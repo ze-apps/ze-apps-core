@@ -8,7 +8,7 @@ class CreateZeappsCurrencyTable
 
     public function up()
     {
-       Capsule::schema()->create('zeapps_currency', function (Blueprint $table) {
+        Capsule::schema()->create('zeapps_currency', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 32);
             $table->string('iso_code', 3);
@@ -20,6 +20,9 @@ class CreateZeappsCurrencyTable
             $table->decimal('conversion_rate', 9, 2);
             $table->tinyInteger('deleted');
             $table->tinyInteger('active');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

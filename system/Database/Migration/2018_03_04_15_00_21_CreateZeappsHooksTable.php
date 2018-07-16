@@ -15,6 +15,7 @@ class CreateZeappsHooksTable
             $table->string('label', 255);
             $table->tinyInteger('shown');
             $table->integer('sort');
+
             $table->timestamps();
             $table->softDeletes();
         });

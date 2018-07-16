@@ -12,6 +12,7 @@ class CreateZeappsModuleRightsTable
             $table->increments('id');
             $table->integer('id_module');
             $table->text('rights');
+
             $table->timestamps();
             $table->softDeletes();
         });

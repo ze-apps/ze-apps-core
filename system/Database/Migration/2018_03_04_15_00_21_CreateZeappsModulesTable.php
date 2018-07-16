@@ -17,6 +17,7 @@ class CreateZeappsModulesTable
             $table->integer('last_sql');
             $table->text('dependencies');
             $table->text('missing_dependencies');
+
             $table->timestamps();
             $table->softDeletes();
         });

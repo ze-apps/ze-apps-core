@@ -11,6 +11,7 @@ class CreateZeappsConfigsTable
        Capsule::schema()->create('zeapps_configs', function (Blueprint $table) {
             $table->increments('id');
             $table->text('value');
+
             $table->timestamps();
             $table->softDeletes();
         });

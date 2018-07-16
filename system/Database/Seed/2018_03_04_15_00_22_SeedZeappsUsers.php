@@ -7,6 +7,13 @@ class SeedZeappsUsers
 {
     public function run()
     {
+        Capsule::table('zeapps_users')->truncate();
+        Capsule::table('zeapps_groups')->truncate();
+        Capsule::table('zeapps_user_groups')->truncate();
+
+
+
+
         Capsule::table('zeapps_users')->insert([
             'id'=>1,
             'firstname' => "John",
