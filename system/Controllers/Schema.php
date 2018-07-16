@@ -191,8 +191,5 @@ class Schema extends Controller
 
         $objMigrate = new \CreateZeappsUsersTable() ;
         $objMigrate->up();
-
-
-        echo "test";
     }
 }

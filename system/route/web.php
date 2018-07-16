@@ -29,6 +29,10 @@ Routeur::get('/zeapps/notification/readNotification', 'Zeapps\\Controllers\\Noti
 Routeur::get('/zeapps/notification/readAllNotificationFrom', 'Zeapps\\Controllers\\Notification@readAllNotificationFrom');
 
 
+Routeur::get('/zeapps/directives/zefilter', 'Zeapps\\Controllers\\View@directive_zefilter');
+
+
+
 
 // TODO : c'est à supprimer, cela servait pour les tests
 Routeur::get('/test/{idProduit}-{nomProduit}', 'Zeapps\\Controllers\\Auth@index')->name('produit');
