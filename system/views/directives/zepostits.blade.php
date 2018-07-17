@@ -1,7 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <div class="row">
     <table class="col-xs-12 text-center postits">
         <tr>
@@ -11,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ng-bind-html="postit.value | postitFilter : postit.filter : postit.filter_options | trusted">
                     </h3>
                     <h5 ng-style="postit.legend_color ? {'color': postit.legend_color} : {}">
-                        {{ postit.legend }}
+                        @{{ postit.legend }}
                     </h5>
                 </div>
             </td>

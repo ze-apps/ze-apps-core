@@ -2,7 +2,7 @@
     <ze-btn class="pull-right" fa="plus" color="success" hint="Nouveau" always-on="true" ng-if="template"
             ze-modalform="select"
             data-template="template"></ze-btn>
-    <h3 class="modal-title">{{ title }}</h3>
+    <h3 class="modal-title">@{{ title }}</h3>
 </div>
 
 <div class="modal-body">
@@ -28,14 +28,14 @@
                 <thead>
                 <tr>
                     <th ng-repeat="field in fields">
-                        {{ field.label }}
+                        @{{ field.label }}
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in items" ng-click="select(item)">
                     <td ng-repeat="field in fields">
-                        {{ item[field.key] }}
+                        @{{ item[field.key] }}
                     </td>
                 </tr>
                 </tbody>
