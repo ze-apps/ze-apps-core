@@ -225,17 +225,19 @@ class Cache
                     $folderObserver = $folderModule . "/Observer/";
 
 
-                    if ($folderOpen = opendir($folderObserver)) {
-                        while (false !== ($folderItem = readdir($folderOpen))) {
-                            $file = $folderObserver . $folderItem;
-                            if (is_file($file) && $folderItem != '.' && $folderItem != '..'
-                                && str_ends_with($folderItem, ".php")
-                            ) {
+                    if (is_dir($folderObserver)) {
+                        if ($folderOpen = opendir($folderObserver)) {
+                            while (false !== ($folderItem = readdir($folderOpen))) {
+                                $file = $folderObserver . $folderItem;
+                                if (is_file($file) && $folderItem != '.' && $folderItem != '..'
+                                    && str_ends_with($folderItem, ".php")
+                                ) {
 
-                                $nomClass = substr($folderItem, 0, strrpos($folderItem, "."));
+                                    $nomClass = substr($folderItem, 0, strrpos($folderItem, "."));
 
-                                $countClass++;
-                                $observers[] = array('App\\' . self::$_modules[$i]->module_id . '\\Observer', $nomClass, $countClass);
+                                    $countClass++;
+                                    $observers[] = array('App\\' . self::$_modules[$i]->module_id . '\\Observer', $nomClass, $countClass);
+                                }
                             }
                         }
                     }
