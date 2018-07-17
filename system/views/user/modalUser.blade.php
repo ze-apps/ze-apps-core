@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3 class="modal-title">{{titre}}</h3>
+    <h3 class="modal-title">@{{titre}}</h3>
 </div>
 
 
@@ -15,8 +15,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="user in users">
-                    <td><a href="#" ng-click="loadUser(user.id)">{{user.firstname}}</a></td>
-                    <td><a href="#" ng-click="loadUser(user.id)">{{user.lastname}}</a></td>
+                    <td><a href="#" ng-click="loadUser(user.id)">@{{user.firstname}}</a></td>
+                    <td><a href="#" ng-click="loadUser(user.id)">@{{user.lastname}}</a></td>
                 </tr>
                 </tbody>
             </table>

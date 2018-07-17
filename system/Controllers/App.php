@@ -98,22 +98,6 @@ class App extends Controller
             $echo['debug'] = false;
         }
 
-
-        // TODO : enregistrement du trigger
-        /*$this->trigger->set('get_context');
-
-        $ret = $this->trigger->execute();
-
-        if(is_array($ret) && sizeof($ret) > 0){
-            foreach($ret as $result){
-                if(!is_array($result)){
-                    $result = array($result);
-                }
-
-                $echo = array_merge($echo, $result);
-            }
-        }*/
-
         echo json_encode($echo);
     }
 
