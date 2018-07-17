@@ -35,7 +35,22 @@ Application::createDirectories();
 
 
 // charge les routes
-require_once SYSDIR . 'route/web.php';
+$dossierRoute = SYSDIR . 'route/' ;
+if (is_dir($dossierRoute)) {
+    if ($folderModule = opendir($dossierRoute)) {
+        while (false !== ($folderItem = readdir($folderModule))) {
+            if ($folderItem != '.'
+                && $folderItem != '..'
+                && str_ends_with($folderItem, ".php")
+            ) {
+                $routeFile = $dossierRoute . $folderItem ;
+                if (is_file($routeFile)) {
+                    require_once $routeFile;
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -62,9 +77,25 @@ if (is_dir(MODULEPATH)) {
             if (is_dir($dir) && $folderItem != '.'
                 && $folderItem != '..'
             ) {
-                $routeFile = $dir . "/route/web.php" ;
+                /*$routeFile = $dir . "/route/web.php" ;
                 if (is_file($routeFile)) {
                     require_once $routeFile;
+                }*/
+                $dossierRoute = $dir . '/route/' ;
+                if (is_dir($dossierRoute)) {
+                    if ($folderModuleRoute = opendir($dossierRoute)) {
+                        while (false !== ($folderItemRoute = readdir($folderModuleRoute))) {
+                            if ($folderItemRoute != '.'
+                                && $folderItemRoute != '..'
+                                && str_ends_with($folderItemRoute, ".php")
+                            ) {
+                                $routeFile = $dossierRoute . $folderItemRoute ;
+                                if (is_file($routeFile)) {
+                                    require_once $routeFile;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

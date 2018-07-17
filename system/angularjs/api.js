@@ -21,13 +21,6 @@ app.config(["$provide",
 					modal : modal_user,
 					post : post_user,
 					del : delete_user
-				},
-				countries : {
-					all : getAll_countries,
-					modal : modal_countries
-				},
-				states : {
-					modal : modal_states
 				}
             };
 
@@ -83,18 +76,7 @@ app.config(["$provide",
                 return zeHttp.delete("/zeapps/user/delete/" + id);
 			}
 
-            // COUNTRIES
-            function getAll_countries(){
-                return zeHttp.get("/zeapps/country/get_all/");
-            }
-            function modal_countries(limit, offset, filters){
-                return zeHttp.post("/zeapps/country/modal/" + limit + "/" + offset, filters);
-            }
 
-            // STATES
-            function modal_states(limit, offset, filters){
-                return zeHttp.post("/zeapps/state/modal/" + limit + "/" + offset, filters);
-            }
 
 			// CONFIG
 			function save_config(data){
