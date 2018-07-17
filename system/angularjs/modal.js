@@ -40,7 +40,7 @@ app.factory("zeapps_modal", ["$uibModal", function($uibModal) {
 	return myServiceInstance;
 
 	function loadModule(moduleName, functionName, option, next, dismiss) {
-console.log(listModuleModalFunction);
+
 		var moduleTrouve = false ;
 		for (var i = 0 ; i < listModuleModalFunction.length ; i++) {
 			if (listModuleModalFunction[i].module_name == moduleName && listModuleModalFunction[i].function_name == functionName) {
