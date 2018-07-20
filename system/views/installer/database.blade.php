@@ -33,17 +33,19 @@ class Database {
         /******** init database for eloquent **********/
         $capsule = new Capsule;
 
-        $capsule->addConnection([
-            'driver'    => Database::$db["default"]["dbdriver"],
-            'host'      => Database::$db["default"]["hostname"],
-            'database'  => Database::$db["default"]["database"],
-            'username'  => Database::$db["default"]["username"],
-            'password'  => Database::$db["default"]["password"],
-            'charset'   => Database::$db["default"]["char_set"],
-            'collation' => Database::$db["default"]["dbcollat"],
-            'prefix'    => Database::$db["default"]["dbprefix"],
-        ]);
 
+        foreach (Database::$db as $key => $value) {
+            $capsule->addConnection([
+                'driver' => Database::$db[$key]["dbdriver"],
+                'host' => Database::$db[$key]["hostname"],
+                'database' => Database::$db[$key]["database"],
+                'username' => Database::$db[$key]["username"],
+                'password' => Database::$db[$key]["password"],
+                'charset' => Database::$db[$key]["char_set"],
+                'collation' => Database::$db[$key]["dbcollat"],
+                'prefix' => Database::$db[$key]["dbprefix"],
+            ], $key);
+        }
 
         // Make this Capsule instance available globally via static methods... (optional)
         $capsule->setAsGlobal();
