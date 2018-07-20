@@ -15,9 +15,14 @@ class Schema extends Controller
 
 
 
+
+        $capsule = Capsule::connection("source");
+
+
+
         $dbName = "zeapps" ;
 
-        $tables = Capsule::select(Capsule::raw('SHOW TABLES FROM ' . $dbName));
+        $tables = $capsule->select($capsule->raw('SHOW TABLES FROM ' . $dbName));
         foreach ($tables as $table) {
             $nomChamps = "Tables_in_" . $dbName ;
             //echo $table->$nomChamps . "\n" ;
@@ -32,7 +37,7 @@ class Schema extends Controller
             $tableCamelCase = str_replace("_", " ", $tableCamelCase);
             $tableCamelCase = ucwords($tableCamelCase);
             $tableCamelCase = str_replace(" ", "", $tableCamelCase);
-            $fields = Capsule::select(Capsule::raw('SHOW COLUMNS FROM ' . $table));
+            $fields = $capsule->select($capsule->raw('SHOW COLUMNS FROM ' . $table));
 
             $contenuPhp = "" ;
             $contenuPhp .= "<?php" . $sautLigne ;
