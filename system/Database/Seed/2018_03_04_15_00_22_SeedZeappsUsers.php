@@ -37,7 +37,9 @@ class SeedZeappsUsers
                 "com_zeapps_project_management"=>1,
                 "com_zeapps_project_financial"=>1,
                 "com_zeapps_contact_read"=>1,
-                "com_zeapps_contact_write"=>1
+                "com_zeapps_contact_write"=>1,
+                "com_zeapps_crm_read"=>1,
+                "com_zeapps_crm_write"=>1
             )),
             'created_at'=>'2018-01-01',
             'updated_at'=>'2018-01-01',
