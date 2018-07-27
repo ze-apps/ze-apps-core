@@ -1,0 +1,46 @@
+[
+  {
+    "id": "crm_delivery_format",
+    "value": "BL-[y-m-XXXXXX]"
+  },
+  {
+    "id": "crm_delivery_frequency",
+    "value": "lifetime"
+  },
+  {
+    "id": "crm_invoice_format",
+    "value": "FA-[XXXXXXXX]"
+  },
+  {
+    "id": "crm_invoice_frequency",
+    "value": "lifetime"
+  },
+  {
+    "id": "crm_order_format",
+    "value": "CO-[y-m-XXXXXX]"
+  },
+  {
+    "id": "crm_order_frequency",
+    "value": "year"
+  },
+  {
+    "id": "crm_product_attributes",
+    "value": "[{\"name\":\"Test\",\"type\":\"text\",\"required\":false}]"
+  },
+  {
+    "id": "crm_quote_format",
+    "value": "DV-[y-m-XXXXXX]"
+  },
+  {
+    "id": "crm_quote_frequency",
+    "value": "year"
+  },
+  {
+    "id": "fr_abeko_num",
+    "value": "114"
+  },
+  {
+    "id": "zeapps_debug",
+    "value": "1"
+  }
+]

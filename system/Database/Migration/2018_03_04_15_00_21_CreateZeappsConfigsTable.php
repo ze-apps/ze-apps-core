@@ -9,11 +9,13 @@ class CreateZeappsConfigsTable
     public function up()
     {
        Capsule::schema()->create('zeapps_configs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id');
             $table->text('value');
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->primary('id');
         });
     }
 
