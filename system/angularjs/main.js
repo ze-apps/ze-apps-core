@@ -283,6 +283,7 @@ app.run(["zeHttp", "zeHooks", "$rootScope", function(zhttp, zeHooks, $rootScope)
 	moment.locale("fr");
 
     zhttp.app.get_context().then(function(response){
+
     	if(response.data && response.data != "false"){
     		angular.forEach(response.data, function(value, key){
     			if (key == "hooks") {

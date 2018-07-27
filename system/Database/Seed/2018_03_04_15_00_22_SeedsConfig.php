@@ -9,7 +9,7 @@ class SeedsConfig
     public function run()
     {
         // import de compagnies
-        Capsule::table('com_zeapps_contact_companies')->truncate();
+        Capsule::table('zeapps_configs')->truncate();
         $configs = json_decode(file_get_contents(dirname(__FILE__) . "/zeapps_configs.json"));
         foreach ($configs as $config_json) {
             $config = new Config();
