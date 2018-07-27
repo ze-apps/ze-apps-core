@@ -96,7 +96,7 @@ class Routeur
         }
 
         if (!$trouve) {
-            Response::send(abort(404));
+            Response::send(abort(404), 404);
         }
     }
 
