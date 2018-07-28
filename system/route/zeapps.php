@@ -19,3 +19,4 @@ Routeur::get('/migrate', 'Zeapps\\Controllers\\Schema@migrate');
 Routeur::get('/ng/{url}', 'Zeapps\\Controllers\\App@index');
 Routeur::get('/zeapps/app/home', 'Zeapps\\Controllers\\App@home');
 Routeur::get('/zeapps/app/get_context', 'Zeapps\\Controllers\\App@get_context');
+Routeur::get('/zeapps/app/update_token', 'Zeapps\\Controllers\\App@update_token');
