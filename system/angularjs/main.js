@@ -296,4 +296,12 @@ app.run(["zeHttp", "zeHooks", "$rootScope", function(zhttp, zeHooks, $rootScope)
             $rootScope.contextLoaded = true;
 		}
 	});
+
+    zhttp.app.hooks.all().then(function(response){
+        if(response.data && response.data != "false"){
+            console.log(response.data);
+            zeHooks.set(response.data);
+            $rootScope.daemon_hooks = zeHooks.get("zeappsDaemon_Hook");
+        }
+    });
 }]);

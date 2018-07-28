@@ -10,8 +10,14 @@ interface iObserver {
      * @param  string $transmitterClassName
      * @param  string $actionName
      * @param  array $arrayParam
-     *
-     * @return string
      */
     public static function action($transmitterClassName = '', $actionName = '', $arrayParam = array(), $callBack = null);
+
+
+    /**
+     * GetHook that the observerReceive
+     *
+     * @return array
+     */
+    public static function getHook();
 }
