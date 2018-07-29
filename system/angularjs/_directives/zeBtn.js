@@ -5,12 +5,13 @@ app.directive("zeBtn", ["$compile", function($compile){
         template: function(elm, attrs){
             var html = elm.html();
 
-            if(attrs.class)
+            if(attrs.class) {
                 attrs.class += " ze-btn";
-            else
+            } else {
                 attrs.class = "ze-btn";
+            }
 
-            return "<span "+attrs.text+">" + html + "</span>";
+            return "<span "+ (attrs.text?attrs.text:"") +">" + html + "</span>";
         },
         replace: true,
 		link: {
@@ -26,13 +27,11 @@ app.directive("zeBtn", ["$compile", function($compile){
 				if(alwaysOn){
 				    if(direction === "right"){
                         html += "<i class='fa fa-fw fa-"+fa+"'></i> " + hint;
-                    }
-                    else{
+                    } else {
                         html += hint + " <i class='fa fa-fw fa-"+fa+"'></i>";
                     }
                     html += "</button>";
-                }
-                else{
+                } else {
 				    html += "<i class='fa fa-fw fa-"+fa+"'></i></button>" +
                             "<span class='hover-hint-wrap hover-hint-"+direction+" hover-hint-"+color+"'><span class='hover-hint'>"+hint+"</span></span>";
                 }

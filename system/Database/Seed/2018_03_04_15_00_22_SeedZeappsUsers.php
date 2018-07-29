@@ -23,6 +23,7 @@ class SeedZeappsUsers
             'password' => hash(User::getTypeHash(), 'password'),
             'created_at'=>'2018-01-01',
             'updated_at'=>'2018-01-01',
+            'id_warehouse'=>1
         ]);
 
 

@@ -1,5 +1,4 @@
 app.directive("zeModalform", ["$compile", "zeapps_modal", function($compile, zeapps_modal){
-
 	return {
 		restrict: "A",
 		scope: {

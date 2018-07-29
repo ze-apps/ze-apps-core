@@ -18,6 +18,7 @@ class CreateZeappsUsersTable
             $table->text('rights');
             $table->string('lang', 6);
             $table->decimal('hourly_rate', 8, 2);
+            $table->integer('id_warehouse', false);
 
             $table->timestamps();
             $table->softDeletes();
