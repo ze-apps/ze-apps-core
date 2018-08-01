@@ -12,7 +12,7 @@ class CreateZeappsLogTable
             $table->increments('id');
            $table->tinyInteger('severity', false, true)->default(0);
            $table->integer('error_code', false, true)->default(0);
-           $table->text('message')->default("");
+           $table->text('message');
            $table->string('object_type', 32)->default("");
            $table->integer('object_id', false, true)->default(0);
            $table->integer('id_employee', false, true)->default(0);
