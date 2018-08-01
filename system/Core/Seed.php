@@ -50,6 +50,8 @@ class Seed
 
                         $migrationClassName = self::getMigrationClassName($folderItem);
 
+                        echo "\033[1;32m " . "Start : " . $folderModuleName . "/" . $folderItem . "\033[0m\n" ;
+
                         // load php file
                         require_once $fileMigration;
 
