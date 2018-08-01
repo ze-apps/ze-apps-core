@@ -40,5 +40,4 @@ app.directive("zeModalform", ["$compile", "zeapps_modal", function($compile, zea
 			}
         }
 	};
-
 }]);

@@ -573,6 +573,9 @@ class ModelHelper
         return $this ;
     }
 
+    public function softDeletes() {
+        return $this ;
+    }
 
 
 

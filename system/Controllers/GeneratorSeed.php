@@ -36,10 +36,49 @@ use App\com_zeapps_crm\Models\DeliveryActivities;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 
+use App\fr_abeko_plan\Models\Articles;
+use App\fr_abeko_plan\Models\ArticlesComposes;
+use App\fr_abeko_plan\Models\ArticlesComposesLignes;
+use App\fr_abeko_plan\Models\Baches;
+use App\fr_abeko_plan\Models\CiternesTypes;
+use App\fr_abeko_plan\Models\CiternesTypesArticles;
+use App\fr_abeko_plan\Models\CiterneTarifs;
+use App\fr_abeko_plan\Models\CiterneTarifsLignes;
+use App\fr_abeko_plan\Models\Conditionnements;
+use App\fr_abeko_plan\Models\Logos;
+use App\fr_abeko_plan\Models\PlanArticles;
+use App\fr_abeko_plan\Models\PlanArticlesComposes;
+use App\fr_abeko_plan\Models\PlanArticlesComposesLignes;
+use App\fr_abeko_plan\Models\PlanPositions;
+use App\fr_abeko_plan\Models\PlanProduits;
+use App\fr_abeko_plan\Models\Plans;
+
+
 class GeneratorSeed extends Controller
 {
     public function generate()
     {
+
+        /*$this->save("fr_abeko_plan", "Articles.json", json_encode(Articles::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "ArticlesComposes.json", json_encode(ArticlesComposes::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "ArticlesComposesLignes.json", json_encode(ArticlesComposesLignes::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "Baches.json", json_encode(Baches::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "CiternesTypes.json", json_encode(CiternesTypes::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "CiternesTypesArticles.json", json_encode(CiternesTypesArticles::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "CiterneTarifs.json", json_encode(CiterneTarifs::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "CiterneTarifsLignes.json", json_encode(CiterneTarifsLignes::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "Conditionnements.json", json_encode(Conditionnements::get(), JSON_PRETTY_PRINT));
+        $this->save("fr_abeko_plan", "Logos.json", json_encode(Logos::get(), JSON_PRETTY_PRINT));*/
+        //$this->save("fr_abeko_plan", "PlanArticles.json", json_encode(PlanArticles::get(), JSON_PRETTY_PRINT));
+        //$this->save("fr_abeko_plan", "PlanArticlesComposes.json", json_encode(PlanArticlesComposes::get(), JSON_PRETTY_PRINT));
+        //$this->save("fr_abeko_plan", "PlanArticlesComposesLignes.json", json_encode(PlanArticlesComposesLignes::get(), JSON_PRETTY_PRINT));
+        //$this->save("fr_abeko_plan", "PlanPositions.json", json_encode(PlanPositions::get(), JSON_PRETTY_PRINT));
+        //$this->save("fr_abeko_plan", "PlanProduits.json", json_encode(PlanProduits::get(), JSON_PRETTY_PRINT));
+        //$this->save("fr_abeko_plan", "Plans.json", json_encode(Plans::get(), JSON_PRETTY_PRINT));
+
+
+
+        /*
         // AccountingNumbers
         $this->save("com_zeapps_contact", "AccountingNumbers.json", json_encode(AccountingNumbers::get(), JSON_PRETTY_PRINT));
 
@@ -116,6 +155,7 @@ class GeneratorSeed extends Controller
 
         // DeliveryActivities
         $this->save("com_zeapps_crm", "DeliveryActivities.json", json_encode(DeliveryActivities::get(), JSON_PRETTY_PRINT));
+        */
 
     }
 

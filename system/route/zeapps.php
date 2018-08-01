@@ -9,8 +9,7 @@ Routeur::match(['get','post'], '/installer', 'Zeapps\\Controllers\\Installer@ind
 Routeur::get('/application', 'Zeapps\\Controllers\\App@index')->name('application');
 
 
-// route pour générer les schema
-Routeur::get('/schema', 'Zeapps\\Controllers\\Schema@index');
+// Migrate for update database
 Routeur::get('/migrate', 'Zeapps\\Controllers\\Schema@migrate');
 
 

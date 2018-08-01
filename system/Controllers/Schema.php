@@ -16,11 +16,16 @@ class Schema extends Controller
 
 
 
-        $capsule = Capsule::connection("source");
+        $capsule = Capsule::connection("default");
+        $dbName = "zeapps_test" ;
+
+
+        //$capsule = Capsule::connection("source");
+        //$dbName = "zeapps" ;
 
 
 
-        $dbName = "zeapps" ;
+
 
         $tables = $capsule->select($capsule->raw('SHOW TABLES FROM ' . $dbName));
         foreach ($tables as $table) {
@@ -191,10 +196,10 @@ class Schema extends Controller
 
 
     public function migrate(Request $request) {
-        require_once BASEPATH . "system/Migration/2018_03_04_14_20_00_CreateZeappsUsersTable.php";
+        /*require_once BASEPATH . "system/Migration/2018_03_04_14_20_00_CreateZeappsUsersTable.php";
 
 
         $objMigrate = new \CreateZeappsUsersTable() ;
-        $objMigrate->up();
+        $objMigrate->up();*/
     }
 }
