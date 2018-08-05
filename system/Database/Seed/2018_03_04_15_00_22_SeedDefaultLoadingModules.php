@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Zeapps\Models\User;
 
 class SeedDefaultLoadingModules
 {
