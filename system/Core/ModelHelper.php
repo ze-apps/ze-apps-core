@@ -511,6 +511,7 @@ class ModelHelper
         $this->lastFieldEdit = 'updated_at' ;
 
         $field = [] ;
+        $field["exclus_default"] = true ;
         $field["parent_type"] = 'date' ;
         $field["type"] = 'timestamps' ;
         $field["name"] = 'created_at' ;
@@ -520,6 +521,7 @@ class ModelHelper
 
 
         $field = [] ;
+        $field["exclus_default"] = true ;
         $field["parent_type"] = 'date' ;
         $field["type"] = 'timestamps' ;
         $field["name"] = 'updated_at' ;
@@ -540,6 +542,7 @@ class ModelHelper
         $this->lastFieldEdit = 'updated_at' ;
 
         $field = [] ;
+        $field["exclus_default"] = true ;
         $field["parent_type"] = 'dateTz' ;
         $field["type"] = 'timestampsTz' ;
         $field["name"] = 'created_at' ;
@@ -549,6 +552,7 @@ class ModelHelper
 
 
         $field = [] ;
+        $field["exclus_default"] = true ;
         $field["parent_type"] = 'dateTz' ;
         $field["type"] = 'timestampsTz' ;
         $field["name"] = 'updated_at' ;
@@ -616,7 +620,9 @@ class ModelHelper
                 if (isset($field["type"]) && ($field["type"] == "longText" || $field["type"] == "mediumText" || $field["type"] == "text")) {
                     $obj_source->$key = "" ;
                 } else {
-                    $obj_source->$key = null ;
+                    if (!isset($field["exclus_default"]) || $field["exclus_default"] !== true) {
+                        $obj_source->$key = null;
+                    }
                 }
 
             }
