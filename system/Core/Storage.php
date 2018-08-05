@@ -1,0 +1,294 @@
+<?php
+
+namespace Zeapps\Core;
+
+class Storage
+{
+    private static $folderStorage = "storage/" ;
+
+
+    public static function getFile($chemin) {
+        $chemin = BASEPATH . self::$folderStorage . $chemin ;
+
+        if (is_file($chemin)) {
+
+            $ext = substr($chemin, strrpos($chemin, ".")+1) ;
+            $fichier = substr($chemin, strrpos($chemin, "/")+1) ;
+
+
+            // Vous voulez afficher un pdf
+            header('Content-type: ' . self::getContentType($ext));
+
+            // Il sera nommé downloaded.pdf
+            header('Content-Disposition: ' . self::getContentDisposition($ext) . '; filename="' . $fichier . '"');
+
+            // Le source du PDF original.pdf
+            readfile($chemin);
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+    public static function uploadFile($fieldUpload, $name = "", $folder = "", $isTemp = false) {
+        if ($isTemp) {
+            $folder = "tmp/" . $folder ;
+        }
+
+        $folder = self::$folderStorage . $folder ;
+
+        if (!self::endsWith($folder, "/")) {
+            $folder .= "/" ;
+        }
+
+        // stockage dans une arborescence par Date
+        $folder .= date("Y/m/d/H/i/s/") ;
+
+
+        if ($name == "") {
+            $ext = substr($fieldUpload["name"], strrpos($fieldUpload["name"], ".")) ;
+            $name = uniqid() . $ext ;
+        }
+
+        // creation du dossier
+        self::mkdir($folder) ;
+
+
+        // chemin vers le fichier
+        $file = $folder . $name ;
+
+
+        move_uploaded_file($fieldUpload["tmp_name"], BASEPATH . $file);
+
+        return $file ;
+    }
+
+
+
+
+    public static function saveContent($contentTxt, $name = "", $folder = "", $isTemp = false) {
+        if ($isTemp) {
+            $folder = "tmp/" . $folder ;
+        }
+
+        $folder = self::$folderStorage . $folder ;
+
+        if (!self::endsWith($folder, "/")) {
+            $folder .= "/" ;
+        }
+
+        // stockage dans une arborescence par Date
+        $folder .= date("Y/m/d/H/i/s/") ;
+
+        if (self::startsWith($name, ".") || $name == "") {
+            $name = uniqid() . $name ;
+        }
+
+        // creation du dossier
+        self::mkdir($folder) ;
+
+        // chemin vers le fichier
+        $file = $folder . $name ;
+
+
+        // sauvegarde le fichier
+        file_put_contents(BASEPATH . $file, $contentTxt);
+
+        return $file ;
+    }
+
+
+    public static function getTempFolder() {
+        $folder = "tmp/" ;
+
+        $folder = self::$folderStorage . $folder ;
+
+        if (!self::endsWith($folder, "/")) {
+            $folder .= "/" ;
+        }
+
+        // stockage dans une arborescence par Date
+        $folder .= date("Y/m/d/H/i/s/") ;
+
+        // creation du dossier
+        self::mkdir($folder) ;
+
+        return $folder ;
+    }
+
+
+
+    private static function mkdir($dirName){
+        $dir = BASEPATH . $dirName ;
+        if (!is_dir($dir)) {
+            self::mkdir_r($dir);
+        }
+    }
+
+    private static function mkdir_r($dirName, $rights=0777){
+        $dirs = explode('/', $dirName);
+        $dir='';
+        foreach ($dirs as $part) {
+            $dir.=$part.'/';
+            if (!is_dir($dir) && strlen($dir)>0)
+                mkdir($dir, $rights);
+        }
+    }
+
+
+    private static function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+
+    private static function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+
+        return $length === 0 ||
+            (substr($haystack, -$length) === $needle);
+    }
+
+
+    private static function getContentType($ext) {
+        $contentType = "application/octet-stream" ;
+
+        $ext = strtolower($ext);
+
+        switch ($ext) {
+            case "doc":
+                return "application/msword" ;
+                break;
+            case "dot":
+                return "application/msword" ;
+                break;
+            case "bin":
+                return "application/octet-stream" ;
+                break;
+            case "pdf":
+                return "application/pdf" ;
+                break;
+            case "ai":
+                return "application/postscript" ;
+                break;
+            case "eps":
+                return "application/postscript" ;
+                break;
+            case "ps":
+                return "application/postscript" ;
+                break;
+            case "rtf":
+                return "application/rtf" ;
+                break;
+            case "xls":
+                return "application/vnd.ms-excel" ;
+                break;
+            case "xlt":
+                return "application/vnd.ms-excel" ;
+                break;
+            case "pps":
+                return "application/vnd.ms-powerpoint" ;
+                break;
+            case "ppt":
+                return "application/vnd.ms-powerpoint" ;
+                break;
+            case "gz":
+                return "application/x-gzip" ;
+                break;
+            case "tar":
+                return "application/x-tar" ;
+                break;
+            case "zip":
+                return "application/zip" ;
+                break;
+            case "bmp":
+                return "image/bmp" ;
+                break;
+            case "gif":
+                return "image/gif" ;
+                break;
+            case "png":
+                return "image/png" ;
+                break;
+            case "jpe":
+                return "image/jpeg" ;
+                break;
+            case "jpeg":
+                return "image/jpeg" ;
+                break;
+            case "jpg":
+                return "image/jpeg" ;
+                break;
+            case "svg":
+                return "image/svg+xml" ;
+                break;
+            case "tif":
+                return "image/tiff" ;
+                break;
+            case "tiff":
+                return "image/tiff" ;
+                break;
+            case "css":
+                return "image/css" ;
+                break;
+            case "htm":
+                return "text/html" ;
+                break;
+            case "html":
+                return "text/html" ;
+                break;
+            case "txt":
+                return "text/plain" ;
+                break;
+        }
+
+
+        return $contentType ;
+    }
+
+    private static function getContentDisposition($ext) {
+        $contentDisposition = "attachment" ;
+
+        $ext = strtolower($ext);
+
+        switch ($ext) {
+            case "gif":
+                return "inline" ;
+                break;
+            case "png":
+                return "inline" ;
+                break;
+            case "jpe":
+                return "inline" ;
+                break;
+            case "jpeg":
+                return "inline" ;
+                break;
+            case "jpg":
+                return "inline" ;
+                break;
+            case "svg":
+                return "inline" ;
+                break;
+            case "css":
+                return "inline" ;
+                break;
+            case "htm":
+                return "inline" ;
+                break;
+            case "html":
+                return "inline" ;
+                break;
+            case "txt":
+                return "inline" ;
+                break;
+        }
+
+
+        return $contentDisposition ;
+    }
+}

@@ -7,7 +7,8 @@
   "require": {
     "php": ">=7.0.0",
     "illuminate/database": "*",
-    "illuminate/view": "*"
+    "illuminate/view": "*",
+    "mpdf/mpdf":"*"
   },
   "autoload": {
     "classmap": [
