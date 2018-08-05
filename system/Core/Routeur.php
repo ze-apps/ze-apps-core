@@ -92,6 +92,7 @@ class Routeur
                 list($controller, $method) = explode("@", $route["controllerMethod"]);
                 $ctrl = new $controller;
                 Response::send($ctrl->$method($request));
+                break;
             }
         }
 
