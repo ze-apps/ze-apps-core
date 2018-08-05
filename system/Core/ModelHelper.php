@@ -613,7 +613,12 @@ class ModelHelper
 
             // set the value as null
             } else {
-                $obj_source->$key = null ;
+                if (isset($field["type"]) && ($field["type"] == "longText" || $field["type"] == "mediumText" || $field["type"] == "text")) {
+                    $obj_source->$key = "" ;
+                } else {
+                    $obj_source->$key = null ;
+                }
+
             }
         }
     }
