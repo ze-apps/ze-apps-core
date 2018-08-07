@@ -14,7 +14,7 @@
     "classmap": [
     ],
     "psr-4": {
-      "App\\": "app/",
+      "App\\": "App/",
       "Zeapps\\": "system/",
       "Config\\": "config/",
       "Cache\\": "cache/"
