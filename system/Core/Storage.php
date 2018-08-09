@@ -7,6 +7,19 @@ class Storage
     private static $folderStorage = "storage/" ;
 
 
+
+    public static function getFileBase64($chemin) {
+        $chemin = BASEPATH . $chemin ;
+
+        if (is_file($chemin)) {
+            $imgbinary = fread(fopen($chemin, "r"), filesize($chemin));
+            return base64_encode($imgbinary) ;
+        } else {
+            return false;
+        }
+    }
+
+
     public static function getFile($chemin) {
         $chemin = BASEPATH . self::$folderStorage . $chemin ;
 
@@ -29,7 +42,62 @@ class Storage
         }
     }
 
+    public static function isFileExists($chemin) {
+        $chemin = BASEPATH . $chemin ;
 
+        if (is_file($chemin)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
+
+    public static function saveBase64($content, $name, $folder = "", $isTemp = false) {
+        if ($isTemp) {
+            $folder = "tmp/" . $folder ;
+        }
+
+        $folder = self::$folderStorage . $folder ;
+
+        if (!self::endsWith($folder, "/")) {
+            $folder .= "/" ;
+        }
+
+        // stockage dans une arborescence par Date
+        $folder .= date("Y/m/d/H/i/s/") ;
+
+
+        // creation du dossier
+        self::mkdir($folder) ;
+
+
+        // chemin vers le fichier
+        $file = $folder . $name ;
+
+        $num_fichier = 0 ;
+        while (is_file(BASEPATH . $file)) {
+            $num_fichier++;
+
+            if (strrpos($name, ".") !== false) {
+                $ext = substr($name, strrpos($name, "."));
+                $name_tmp = substr($name, 0, strrpos($name, ".")) . "_" . $num_fichier . $ext;
+            } else {
+                $name_tmp = $name . "_" . $num_fichier ;
+            }
+
+            $file = $folder . $name_tmp ;
+        }
+
+
+        file_put_contents(BASEPATH . $file, base64_decode($content));
+
+        return $file ;
+    }
 
 
 
@@ -100,6 +168,24 @@ class Storage
         return $file ;
     }
 
+
+
+
+    public static function getFolder($folder = "") {
+        $folder = self::$folderStorage . $folder ;
+
+        if (!self::endsWith($folder, "/")) {
+            $folder .= "/" ;
+        }
+
+        // stockage dans une arborescence par Date
+        $folder .= date("Y/m/d/H/i/s/") ;
+
+        // creation du dossier
+        self::mkdir($folder) ;
+
+        return $folder ;
+    }
 
     public static function getTempFolder() {
         $folder = "tmp/" ;
