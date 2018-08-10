@@ -15,6 +15,7 @@
                     <th>Date</th>
                     <th>Expéditeur</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,11 @@
                     <td ng-click="goTo(email.id)">@{{email.subject}}</td>
                     <td ng-click="goTo(email.id)">@{{email.date_send}}</td>
                     <td ng-click="goTo(email.id)">@{{email.sender.email}}</td>
+                    <td ng-click="goTo(email.id)">
+                        <i class="fa fa-fw fa-clock-o" style="color:#d28d00" ng-show="email.status==1"></i>
+                        <i class="fa fa-fw fa-envelope" style="color:#12955f" ng-show="email.status==2"></i>
+                        <i class="fa fa-fw fa-exclamation-triangle"style="color:#ce0000" ng-show="email.status==3"></i>
+                    </td>
                     <td class="text-right">
 
                     </td>

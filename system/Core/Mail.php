@@ -14,6 +14,22 @@ use Zeapps\Models\User;
 
 class Mail
 {
+    public static function getStatusLabel($idStatus) {
+        switch ($idStatus) {
+            case 1:
+                return "sent";
+                break;
+            case 2:
+                return "delivred";
+                break;
+            case 3:
+                return "error";
+                break;
+        }
+
+    }
+
+
     public static function send(
         $subject,
         $content_html = "",
@@ -125,18 +141,7 @@ class Mail
 
 
 
-        // pour récupérer les évenements sur un email
-        /*try {
-            $result = $apiInstance->getEmailEventReport(50, 0, null, null, null, null, null, null, "<201808091654.60026338476@smtp-relay.mailin.fr>", null);
 
-
-            if (get_class($result) == "SendinBlue\Client\Model\GetEmailEventReport") {
-                var_dump($result->getEvents());
-
-            }
-        } catch (Exception $e) {
-            echo 'Exception when calling SMTPApi->getEmailEventReport: ', $e->getMessage(), PHP_EOL;
-        }*/
 
 
 
