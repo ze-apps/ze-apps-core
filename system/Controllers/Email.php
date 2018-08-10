@@ -122,4 +122,9 @@ class Email extends Controller
             'total' => count($emails)
         ));
     }
+
+
+    public function cron() {
+        echo "test" ;
+    }
 }

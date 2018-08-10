@@ -30,4 +30,21 @@ class Event
 
         return $listHooks ;
     }
+
+
+    public static function getCron($callBack = null) {
+        $observers = ObserverCache::getObserver() ;
+
+        $listCron = array();
+
+        foreach ($observers as $observer) {
+            $retour = $observer::getCron();
+
+            if (is_array($retour)) {
+                $listCron = array_merge($listCron, $retour);
+            }
+        }
+
+        return $listCron ;
+    }
 }

@@ -246,6 +246,31 @@ class Cache
         }
 
 
+
+        // System Folder
+        $folderObserver = BASEPATH . "system/Observer/";
+        if (is_dir($folderObserver)) {
+            if ($folderOpen = opendir($folderObserver)) {
+                while (false !== ($folderItem = readdir($folderOpen))) {
+                    $file = $folderObserver . $folderItem;
+                    if (is_file($file) && $folderItem != '.' && $folderItem != '..'
+                        && str_ends_with($folderItem, ".php")
+                    ) {
+
+                        $nomClass = substr($folderItem, 0, strrpos($folderItem, "."));
+
+                        $countClass++;
+                        $observers[] = array('Zeapps\\Observer', $nomClass, $countClass);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
         $contentObserver = "<?php\n\n";
 
 

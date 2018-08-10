@@ -20,4 +20,15 @@ interface iObserver {
      * @return array
      */
     public static function getHook();
+
+
+
+
+    /**
+     * GetCron that the observerReceive
+     *
+     * @return array
+     */
+    public static function getCron();
+
 }
