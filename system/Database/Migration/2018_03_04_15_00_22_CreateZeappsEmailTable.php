@@ -12,7 +12,7 @@ class CreateZeappsEmailTable
             $table->increments('id');
             $table->integer('id_user_account')->default(0);
             $table->string('name_user_account')->default("");
-            $table->timestamp('date_send')->default("0000-00-00 00:00:00");
+            $table->timestamp('date_send');
             $table->string('subject', 50);
             $table->longText('content_html');
             $table->longText('content_text');

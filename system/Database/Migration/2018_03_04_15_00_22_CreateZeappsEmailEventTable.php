@@ -10,7 +10,7 @@ class CreateZeappsEmailEventTable
         Capsule::schema()->create('zeapps_email_event', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_email')->default(0);
-            $table->timestamp('date_event')->default("0000-00-00 00:00:00");
+            $table->timestamp('date_event');
             $table->string('event')->default("");
 
             $table->timestamps();
