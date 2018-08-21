@@ -8,7 +8,7 @@
     "php": ">=7.0.0",
     "illuminate/database": "*",
     "illuminate/view": "*",
-    "mpdf/mpdf":"*",
+    "mpdf/mpdf":"7.*",
     "sendinblue/api-v3-sdk":"*"
   },
   "autoload": {
