@@ -8,7 +8,23 @@ use Illuminate\Database\Schema\Blueprint;
 
 class Migration
 {
-    public static function chechNewFile() {
+    public static function chechNewFile($argv = null) {
+
+
+        $moduleExclude = array();
+
+        if ($argv) {
+            foreach ($argv as $arg) {
+                $str_exclude = strpos($arg, "exclude:") ;
+                if ($str_exclude === 0) {
+                    $moduleExclude[] = substr($arg, strlen("exclude:"));
+                }
+            }
+        }
+
+
+
+
 
         self::checkTableMigrationExists();
 
@@ -32,12 +48,15 @@ class Migration
         if (is_dir(MODULEPATH)) {
             if ($folderModule = opendir(MODULEPATH)) {
                 while (false !== ($folderModuleName = readdir($folderModule))) {
+
                     $dir = MODULEPATH . $folderModuleName;
                     if (is_dir($dir) && $folderModuleName != '.'
                         && $folderModuleName != '..'
                     ) {
-                        $folderToCheck = $dir . "/Database/Migration/" ;
-                        $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName, $idBatch);
+                        if (!in_array($folderModuleName, $moduleExclude)) {
+                            $folderToCheck = $dir . "/Database/Migration/";
+                            $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName, $idBatch);
+                        }
                     }
                 }
             }
@@ -50,7 +69,7 @@ class Migration
         }
     }
 
-    public static function rollback() {
+    public static function rollback($argv = null) {
         $migrations = MigrationModel::orderBy("batch", "DESC")->orderBy("id", "DESC")->get() ;
 
         foreach ($migrations as $migration) {

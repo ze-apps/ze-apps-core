@@ -7,13 +7,13 @@ use Zeapps\Core\Migration;
 
 class MigrateConsole
 {
-    public static function execute() {
+    public static function execute($argv = null) {
         // check if migration must lauch
-        Migration::chechNewFile();
+        Migration::chechNewFile($argv);
     }
 
-    public static function rollback()
+    public static function rollback($argv = null)
     {
-        Migration::rollback();
+        Migration::rollback($argv);
     }
 }

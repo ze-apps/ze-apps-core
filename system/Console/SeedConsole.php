@@ -7,13 +7,8 @@ use Zeapps\Core\Seed;
 
 class SeedConsole
 {
-    public static function execute() {
+    public static function execute($argv = null) {
         // check if migration must lauch
-        Seed::chechNewFile();
-    }
-
-    public static function rollback()
-    {
-        Seed::rollback();
+        Seed::chechNewFile($argv);
     }
 }

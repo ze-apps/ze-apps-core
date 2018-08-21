@@ -8,7 +8,21 @@ use Illuminate\Database\Schema\Blueprint;
 
 class Seed
 {
-    public static function chechNewFile() {
+    public static function chechNewFile($argv = null) {
+
+
+        $moduleExclude = array();
+
+        if ($argv) {
+            foreach ($argv as $arg) {
+                $str_exclude = strpos($arg, "exclude:") ;
+                if ($str_exclude === 0) {
+                    $moduleExclude[] = substr($arg, strlen("exclude:"));
+                }
+            }
+        }
+
+
 
         $nbUpdate = 0 ;
 
@@ -26,8 +40,10 @@ class Seed
                     if (is_dir($dir) && $folderModuleName != '.'
                         && $folderModuleName != '..'
                     ) {
-                        $folderToCheck = $dir . "/Database/Seed/" ;
-                        $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName);
+                        if (!in_array($folderModuleName, $moduleExclude)) {
+                            $folderToCheck = $dir . "/Database/Seed/";
+                            $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName);
+                        }
                     }
                 }
             }
