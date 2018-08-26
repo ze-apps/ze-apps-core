@@ -10,7 +10,6 @@ use Config\Database;
 use Zeapps\Core\Application;
 use Zeapps\Core\Migration;
 
-Session::start();
 
 
 
@@ -30,6 +29,11 @@ Application::createDirectories();
 
 
 
+
+
+
+// start session
+Session::start();
 
 
 

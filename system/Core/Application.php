@@ -93,5 +93,9 @@ class Application
         if (!is_dir(BASEPATH . "cache/")) {
             recursive_mkdir(BASEPATH . "cache/");
         }
+
+        if (!is_dir(BASEPATH . "session/")) {
+            recursive_mkdir(BASEPATH . "session/");
+        }
     }
 }

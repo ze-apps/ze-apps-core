@@ -1,6 +1,7 @@
 /tmp
 /config
 /storage/
+/session/
 
 # dependencies
 /vendor

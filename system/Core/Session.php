@@ -6,11 +6,17 @@ class Session
 {
     public function __construct()
     {
+        session_save_path(BASEPATH . "session/");
+        ini_set('session.gc_probability', 1);
+
         if (!isset($_SESSION))
             session_start();
     }
 
     public static function start() {
+        session_save_path(BASEPATH . "session/");
+        ini_set('session.gc_probability', 1);
+
         if (!isset($_SESSION))
             session_start();
     }
