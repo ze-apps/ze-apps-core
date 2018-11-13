@@ -22,4 +22,5 @@ composer.lock
 
 # cache
 /public/cache/*
+/public/uploads/*
 /cache/*
