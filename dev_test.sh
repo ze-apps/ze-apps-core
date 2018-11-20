@@ -1,3 +1,3 @@
 php zeapps migrate:rollback
-php zeapps migrate exclude:fr_abeko_plan
-php zeapps seed exclude:fr_abeko_plan
+php zeapps migrate exclude:fr_abeko_plan exclude:com_quiltmania exclude:com_quiltmania_abonnement exclude:com_quiltmania_migration exclude:com_quiltmania_publicite
+php zeapps seed exclude:fr_abeko_plan exclude:com_quiltmania exclude:com_quiltmania_abonnement exclude:com_quiltmania_migration exclude:com_quiltmania_publicite
