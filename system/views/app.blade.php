@@ -286,12 +286,12 @@
         <script src="/assets/js/chartjs/Chart.min.js"></script>
 
         <!-- AngularJS -->
-        <script src="/assets/js/angular-1.6.5/angular.min.js"></script>
-        <script src="/assets/js/angular-1.6.5/angular-route.min.js"></script>
-        <script src="/assets/js/angular-1.6.5/angular-animate.min.js"></script>
-        <script src="/assets/js/angular-1.6.5/angular-touch.min.js"></script>
-        <script src="/assets/js/angular-1.6.5/angular-sanitize.min.js"></script>
-        <script src="/assets/js/angular-1.6.5/i18n/angular-locale_fr-fr.js"></script>
+        <script src="/assets/js/angular-1.7.5/angular.min.js"></script>
+        <script src="/assets/js/angular-1.7.5/angular-route.min.js"></script>
+        <script src="/assets/js/angular-1.7.5/angular-animate.min.js"></script>
+        <script src="/assets/js/angular-1.7.5/angular-touch.min.js"></script>
+        <script src="/assets/js/angular-1.7.5/angular-sanitize.min.js"></script>
+        <script src="/assets/js/angular-1.7.5/i18n/angular-locale_fr-fr.js"></script>
 
         <!-- angularjs directive for ChartJS -->
         <script src="/assets/js/angular-chartjs/angular-chart.min.js"></script>
