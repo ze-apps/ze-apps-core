@@ -608,7 +608,16 @@ class ModelHelper
                 if (isset($field["parent_type"]) && $field["parent_type"] == "date" && $obj_source->$key) {
                     $obj_source->$key = str_replace("T", " ", $obj_source->$key);
                     $obj_source->$key = str_replace("Z", "", $obj_source->$key);
+                } elseif (isset($field["parent_type"]) && $field["parent_type"] == "numeric") {
+                    if (!is_numeric($obj_source->$key)) {
+                        if (isset($field["default"])) {
+                            $obj_source->$key = $field["default"] ;
+                        } elseif ($field["nullable"]) {
+                            $obj_source->$key = null ;
+                        }
+                    }
                 }
+
 
 
             // set the default value
