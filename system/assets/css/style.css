@@ -788,3 +788,22 @@ toasts .alert-dismissible .close{
 .search_results{
     padding-left: 40px;
 }
+
+
+.msg-ecran-construction {
+    background-color: #dd0000;
+    color:#fff;
+    padding:5px;
+    font-weight: bold;
+}
+.msg-ecran-construction div {
+    display: none;
+}
+.msg-ecran-construction:after {
+    display: block;
+    background-color: #dd0000;
+    color:#fff;
+    padding:5px;
+    font-weight: bold;
+    content: "Ecran en construction, ne pas utiliser";
+}
