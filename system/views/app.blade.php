@@ -97,12 +97,12 @@
                 <div class="footer-menu">
 
                     <div class="pull-left">
-                        <button type="button" class="btn btn-sm">
-                            <span class="fa fa-fw fa-shopping-cart" aria-hidden="true" ze-auth="zeapps_admin"></span>
+                        <button type="button" class="btn btn-sm" ze-auth="zeapps_admin">
+                            <span class="fa fa-fw fa-shopping-cart" aria-hidden="true"></span>
                             Extension store
                         </button>
-                        <button type="button" class="btn btn-sm">
-                            <span class="fa fa-fw fa-list-ul" aria-hidden="true" ze-auth="zeapps_admin"></span>
+                        <button type="button" class="btn btn-sm" ze-auth="zeapps_admin">
+                            <span class="fa fa-fw fa-list-ul" aria-hidden="true"></span>
                             Abonnement
                         </button>
                     </div>

@@ -38,7 +38,6 @@ class User extends Controller
     {
         $id = $request->input('id', 0);
 
-
         if ($user = UserModel::where('id', $id)->first()) {
             $user->groups = [];
             if ($user_groups = UserGroups::where('id_user', $user->id)->get()) {

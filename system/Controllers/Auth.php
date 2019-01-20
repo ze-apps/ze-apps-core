@@ -49,7 +49,6 @@ class Auth extends Controller
                 $data["error"] = true;
             } else {
                 Session::set('token', $token);
-                //dd(Session::get('token'));
 
                 return redirect('application');
             }

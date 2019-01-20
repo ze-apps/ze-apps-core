@@ -28,8 +28,11 @@ app.directive("zeAuth", ["$rootScope", function($rootScope){
 	};
 
 	function evaluateRight(right, elm){
+
         if($rootScope.user && $rootScope.user.rights){
-            if($rootScope.user.rights[right] !== 1) {
+            var rights = JSON.parse($rootScope.user.rights);
+
+            if(rights[right] !== 1) {
                 elm.remove();
             }
             else{

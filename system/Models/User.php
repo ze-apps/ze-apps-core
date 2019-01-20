@@ -5,6 +5,8 @@ namespace Zeapps\Models ;
 use Illuminate\Database\Eloquent\Model ;
 
 use Zeapps\Models\Token;
+use Zeapps\Models\Groups;
+use Zeapps\Models\UserGroups;
 
 class User extends Model {
 
@@ -71,7 +73,46 @@ class User extends Model {
             $token = Token::where('token', $tokenUser)->get();
 
             if ($token && count($token) == 1) {
-                return self::find($token[0]->id_user);
+                $user = self::find($token[0]->id_user);
+
+                if ($user) {
+                    $rights = json_decode("{}");
+                    if (trim($user->rights) != "") {
+                        $rights = json_decode($user->rights);
+                    }
+
+
+                    // Charge les groupes de l'utilisateur
+                    $objUserGroups = UserGroups::where("id_user", $user->id)->get() ;
+
+
+                    if ($objUserGroups) {
+                        foreach ($objUserGroups as $objUserGroup) {
+                            $objGroups = Groups::find($objUserGroup->id_group) ;
+                            if ($objGroups) {
+                                if (trim($objGroups->rights) != "") {
+                                    $rightsGroup = json_decode($objGroups->rights);
+
+                                    foreach ($rightsGroup as $key => $value) {
+                                        if (!isset($rights->$key)) {
+                                            $rights->$key = $value ;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    $user->rights = json_encode($rights) ;
+
+
+
+
+
+                }
+
+                return $user;
             } else {
                 return false;
             }

@@ -36,6 +36,7 @@ class SeedZeappsUsers
             'id'=>1,
             'label' => "Testeur",
             'rights' => json_encode(array(
+                "zeapps_admin"=>1,
                 "com_zeapps_project_write"=>1,
                 "com_zeapps_project_read"=>1,
                 "com_zeapps_project_management"=>1,
