@@ -30,23 +30,26 @@ class ObjectHistory
         }
 
         // Get connected user
-        $token = Token::where('token', Session::get('token'))->first();
-        if (!$token) {
-            echo 'Erreur (1) of histories';
-            exit();
+        $id_user = 0;
+        $user_name = '';
+        if (Session::get('token', '') != '') {
+            $token = Token::where('token', Session::get('token'))->first();
+
+            if ($token) {
+
+                $user = User::findOrFail($token->id_user);
+                if ($user) {
+                    $id_user = $user->id;
+                    $user_name = $user->firstname . ' ' . $user->lastname;
+                }
+            }
         }
 
-        // User
-        $user = User::findOrFail($token->id_user);
-        if (!$user) {
-            echo 'Erreur (2) of histories';
-            exit();
-        }
 
         // Saving history
         $history = new ObjectHistoryModel();
-        $history->id_user = $user->id;
-        $history->user_name = $user->firstname . ' ' . $user->lastname;
+        $history->id_user = $id_user;
+        $history->user_name = $user_name;
         $history->table = $table;
         $history->id_table = $id;
         $history->action = $action;
