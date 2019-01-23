@@ -56,14 +56,14 @@ app.controller("MainCtrl", ["$scope", "$location", "$rootScope", "zeHttp", "$int
 
 
 		/********* search new version available ***********/
-        $.get($rootScope.urlUpdateCheck + "/core/" + $rootScope.currentVersion + "/" + $rootScope.branchVersion + "/" + $rootScope.instanceSerial, function (data) {
+        /*$.get($rootScope.urlUpdateCheck + "/core/" + $rootScope.currentVersion + "/" + $rootScope.branchVersion + "/" + $rootScope.instanceSerial, function (data) {
             if (data.bug || data.minor || data.major) {
                 $rootScope.updateAvailable = true;
                 $rootScope.updateAvailableData = data;
 
                 // TODO : envoyer une notiifcaiton à l'application qu'une mise à jour est disponible
 			}
-        });
+        });*/
 
 
 
