@@ -223,7 +223,8 @@ class Storage
     private static function mkdir($dirName){
         $dir = BASEPATH . $dirName ;
         if (!is_dir($dir)) {
-            self::mkdir_r($dir);
+            mkdir($dir, 0777, true);
+            //self::mkdir_r($dir);
         }
     }
 
