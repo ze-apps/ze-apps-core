@@ -3,6 +3,8 @@
 /storage/
 /session/
 
+/public/assets/images/logo.png
+
 # dependencies
 /vendor
 
