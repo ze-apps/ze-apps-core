@@ -6,7 +6,7 @@ use Zeapps\Core\Routeur ;
 Routeur::get('/zeapps/user/modal_user', 'Zeapps\\Controllers\\User@modal_user');
 Routeur::get('/zeapps/user/view', 'Zeapps\\Controllers\\User@view');
 Routeur::get('/zeapps/user/form', 'Zeapps\\Controllers\\User@form');
-Routeur::get('/zeapps/user/get/{id}', 'Zeapps\\Controllers\\User@form');
+Routeur::get('/zeapps/user/get/{id}', 'Zeapps\\Controllers\\User@get');
 Routeur::get('/zeapps/user/get_context/', 'Zeapps\\Controllers\\User@get_context');
 Routeur::get('/zeapps/user/all', 'Zeapps\\Controllers\\User@all');
 Routeur::post('/zeapps/user/modal/{limit}/{offset}', 'Zeapps\\Controllers\\User@modal');

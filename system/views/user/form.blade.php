@@ -1,7 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <div id="breadcrumb">Ze-apps > Utilisateurs</div>
 <div id="content">
 
@@ -59,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <label>Groupes</label>
 
                     <div ng-repeat="group in groups">
-                        <input type="checkbox" ng-model="form.groups[group.id]"> {{::group.label}}
+                        <input type="checkbox" ng-model="form.groups[group.id]"> @{{::group.label}}
                     </div>
                 </div>
             </div>
@@ -86,13 +82,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div ng-repeat="module in modules" ng-if="module.rights">
                             <div ng-click="module.closed = !module.closed" class="bg-dark">
                                 <i class="fa fa-fw" ng-class="module.closed ? 'fa-plus' : 'fa-minus'"></i>
-                                Module : {{::module.label}}
+                                Module : @{{::module.label}}
                             </div>
 
                             <div ng-repeat="(right, label) in module.rights" ng-hide="module.closed">
                                 <label>
                                     <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="form.rights_array[module.module_id + '_' + right]">
-                                    {{::label}}
+                                    @{{::label}}
                                 </label>
                             </div>
                         </div>

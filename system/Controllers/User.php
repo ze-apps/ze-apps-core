@@ -39,12 +39,14 @@ class User extends Controller
         $id = $request->input('id', 0);
 
         if ($user = UserModel::where('id', $id)->first()) {
-            $user->groups = [];
+            $groupsData = array() ;
             if ($user_groups = UserGroups::where('id_user', $user->id)->get()) {
                 foreach ($user_groups as $user_group) {
-                    $user->groups[$user_group->id_group] = true;
+                    $groupsData[$user_group->id_group] = true;
                 }
             }
+
+            $user->groups = $groupsData;
         }
 
         if (!$groups = Groups::orderBy('label')->get()) {
@@ -53,8 +55,9 @@ class User extends Controller
 
         if ($modules = Module::where('active', 1)->get()) {
             foreach ($modules as $module) {
-                if ($right = ModuleRights::where('id_module', $module->id)->get()) {
-                    $module->rights = json_decode($right->rights, true);
+                $rights = ModuleRights::where('id_module', $module->id)->get();
+                if ($rights && count($rights)) {
+                    $module->rights = json_decode($rights->rights, true);
                 } else {
                     $module->rights = false;
                 }
@@ -99,7 +102,7 @@ class User extends Controller
 
     public function all()
     {
-        echo json_encode(User::all());
+        echo json_encode(UserModel::all());
     }
 
     public function modal(Request $request)
