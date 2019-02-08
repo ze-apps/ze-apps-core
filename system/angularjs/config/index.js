@@ -6,9 +6,9 @@ app.controller("ComZeAppsConfigCtrl", ["$scope", "$rootScope", "zeHttp", "menu",
 		$scope.emptyCache = emptyCache;
 		$scope.success = success;
 
-		function emptyCache(){
-			zhttp.get("/zeapps/config/emptyCache/").then(function(response){
-				if(response.data && response.data != "false"){
+		function emptyCache() {
+			zhttp.get("/zeapps/config/emptyCache").then(function (response) {
+				if (response.data && response.data != "false") {
 					document.location.reload(true);
 				}
 			});

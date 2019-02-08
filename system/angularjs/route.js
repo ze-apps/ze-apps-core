@@ -14,7 +14,7 @@ app.config(["$routeProvider",
 
             // CONFIG
 			.when("/ng/com_zeapps/config", {
-				templateUrl: "/zeapps/config/",
+				templateUrl: "/zeapps/config",
 				controller: "ComZeAppsConfigCtrl"
 			})
 
