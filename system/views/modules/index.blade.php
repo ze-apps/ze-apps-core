@@ -1,7 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <div id="breadcrumb">Ze-apps > Modules</div>
 <div id="content">
 
@@ -20,8 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </thead>
                 <tbody>
                 <tr ng-repeat="module in modules | orderBy:'version'">
-                    <td>{{ module.label }}</td>
-                    <td class="text-right">{{ module.version }}</td>
+                    <td>@{{ module.label }}</td>
+                    <td class="text-right">@{{ module.version }}</td>
                     <td class="text-right"><span class="fa pointer" ng-class="testIfActif(module)"
                                                  ng-click="toggleActivation(module)"></span></td>
                 </tr>
@@ -39,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="checkbox" ng-repeat="module in modulesToUpdate">
                 <label>
                     <input type="checkbox" ng-model="modulesForm[module.module_id]">
-                    {{module.label}}
+                    @{{module.label}}
                 </label>
             </div>
         </div>
@@ -48,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="checkbox" ng-repeat="module in modulesToInstall">
                 <label>
                     <input type="checkbox" ng-model="modulesForm[module.module_id]">
-                    {{module.label}}
+                    @{{module.label}}
                 </label>
             </div>
         </div>

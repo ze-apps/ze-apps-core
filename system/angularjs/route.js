@@ -50,7 +50,7 @@ app.config(["$routeProvider",
 
 			// MODULES
 			.when("/ng/com_zeapps/modules", {
-				templateUrl:"/zeapps/modules/",
+				templateUrl:"/zeapps/modules",
 				controller: "ComZeAppsModulesCtrl"
 			})
 
