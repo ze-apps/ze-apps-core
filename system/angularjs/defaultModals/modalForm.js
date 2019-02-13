@@ -23,6 +23,10 @@ app.controller("ZeAppsCoreModalFormCtrl", ["$scope", "$uibModalInstance", "optio
             delete $scope.form.zeapps_modal_form_isvalid;
         }
 
+        if ($scope.form.zeapps_modal_form_custom_isvalid) {
+            delete $scope.form.zeapps_modal_form_custom_isvalid;
+        }
+
         $uibModalInstance.close($scope.form);
     }
 
