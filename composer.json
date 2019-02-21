@@ -9,7 +9,8 @@
     "illuminate/database": "*",
     "illuminate/view": "*",
     "mpdf/mpdf":"7.*",
-    "sendinblue/api-v3-sdk":"*"
+    "sendinblue/api-v3-sdk":"*",
+    "phpoffice/phpspreadsheet":"*"
   },
   "autoload": {
     "classmap": [
