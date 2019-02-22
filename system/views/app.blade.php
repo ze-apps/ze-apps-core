@@ -21,7 +21,10 @@
         <link rel="stylesheet" media="print" href="/assets/css/fullcalendar.print.min.css">
 
         <!-- Font-Awesome -->
-        <link rel="stylesheet" media="print,screen" href="/assets/css/font-awesome.min.css">
+        <!--<link rel="stylesheet" media="print,screen" href="/assets/css/font-awesome.min.css">-->
+        <link rel="stylesheet" media="print,screen" href="/assets/fontawesome-free-5.7.2-web/css/all.css">
+
+
 
         <link rel="stylesheet" media="print,screen" href="/assets/css/app.css">
         <link rel="stylesheet" media="print,screen" href="/cache/css/global.css">
@@ -181,7 +184,7 @@
                     @foreach ($menuLeft as $menuSpace)
                         <div id="full-menu" ng-show="menu == '{{ $menuSpace["info"]["id"] }}'?true:false" class="app-sale">
                             <div class="title-app" ng-click="toggleMenuSize()">
-                                <span class="fa fa-fw fa-{{ isset($menuSpace["info"]["fa-icon"]) ? $menuSpace["info"]["fa-icon"] : 'font-awesome' }}"></span>
+                                <span class="fas fa-fw fa-{{ isset($menuSpace["info"]["fa-icon"]) ? $menuSpace["info"]["fa-icon"] : 'chevron-circle-down' }}"></span>
                                 <span class="menu_title">{{ $menuSpace["info"]["name"] }}</span>
                             </div>
                             <div id="menu-nav">
@@ -189,7 +192,7 @@
                                     @foreach ($menuSpace["item"] as $menuItem)
                                         <li ng-class="menu_active == '{{ $menuItem["id"] }}' ? 'active' :''">
                                             <a href="{{ $menuItem["url"] }}">
-                                                <span class="fa fa-fw fa-{{ isset($menuItem["fa-icon"]) ? $menuItem["fa-icon"] : 'font-awesome' }}" aria-hidden="true"></span>
+                                                <span class="fas fa-fw fa-{{ isset($menuItem["fa-icon"]) ? $menuItem["fa-icon"] : 'align-justify' }}" aria-hidden="true"></span>
                                                 <span class="menu_item">{{ $menuItem["label"] }}</span>
                                             </a>
                                         </li>
@@ -203,7 +206,7 @@
                 <ul class="notifications" ng-class="showNotification ? 'show' : ''">
                     <li ng-repeat="(moduleName, module) in notifications" ng-class="notification.status">
                     <span class="module-name">
-                        <span class="fa fa-times pointer pull-right" aria-hidden="true" ng-click="readAllNotificationsFrom(moduleName)"></span>
+                        <span class="fas fa-times pointer pull-right" aria-hidden="true" ng-click="readAllNotificationsFrom(moduleName)"></span>
                         @{{ moduleName }}
                     </span>
                         <ul>

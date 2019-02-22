@@ -3,6 +3,7 @@
 namespace Zeapps\Models ;
 
 use Illuminate\Database\Eloquent\Model ;
+use Zeapps\Core\Session;
 
 use Zeapps\Models\Token;
 use Zeapps\Models\Groups;
@@ -118,6 +119,21 @@ class User extends Model {
             }
         } else {
             return false;
+        }
+    }
+
+    public static function getCurrentUser()
+    {
+        // verifie si la session est active
+        if (Session::get('token')) {
+            $user = self::getUserByToken(Session::get('token'));
+            if ($user && count($user) == 1) {
+                $user->password = null;
+
+                $user->i18n = [];
+
+                return $user;
+            }
         }
     }
 }

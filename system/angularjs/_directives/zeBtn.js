@@ -26,9 +26,9 @@ app.directive("zeBtn", ["$compile", function($compile){
 
 				if(alwaysOn){
 				    if(direction === "right"){
-                        html += "<i class='fa fa-fw fa-"+fa+"'></i> " + hint;
+                        html += "<i class='fas fa-fw fa-"+fa+"'></i> " + hint;
                     } else {
-                        html += hint + " <i class='fa fa-fw fa-"+fa+"'></i>";
+                        html += hint + " <i class='fas fa-fw fa-"+fa+"'></i>";
                     }
                     html += "</button>";
                 } else {
