@@ -12,8 +12,6 @@ class View implements iResponse
     private $_cachePath = "" ;
 
     public function __construct($name, $data = array(), $viewPath = BASEPATH . 'system/views/', $cachePath = BASEPATH . "tmp/") {
-
-
         if (strpos($viewPath, BASEPATH . "App") === 0) {
             $pathView = substr($viewPath, strlen(BASEPATH . "App"));
             $pathViewOveride = BASEPATH . "overide" . $pathView ;
@@ -21,9 +19,6 @@ class View implements iResponse
                 $viewPath = $pathViewOveride ;
             }
         }
-
-
-
 
         $this->name = $name ;
         $this->_data = $data ;
