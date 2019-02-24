@@ -2,6 +2,7 @@
 /config
 /storage/
 /session/
+/overide/
 
 /public/user/logo.png
 /public/user/logo.jpg
