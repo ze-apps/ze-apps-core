@@ -114,7 +114,7 @@ class App extends Controller
 
     private function loadCache()
     {
-        Cache::generateCache() ;
+        //Cache::generateCache() ;
 
         return true;
     }
