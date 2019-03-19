@@ -6,7 +6,22 @@ class Storage
 {
     private static $folderStorage = "storage/" ;
 
+    public static function getFolderStorage() {
+        return self::$folderStorage;
+    }
 
+    public static function getIdToFolder($id) {
+        $folder = "" ;
+        $arrId = str_split($id);
+        foreach ($arrId as $numberId) {
+            if ($folder != "") {
+                $folder .= "/" ;
+            }
+            $folder .= $numberId ;
+        }
+
+        return $folder ;
+    }
 
     public static function getFileBase64($chemin) {
         $chemin = BASEPATH . $chemin ;
@@ -20,7 +35,7 @@ class Storage
     }
 
 
-    public static function getFile($chemin) {
+    public static function getFile($chemin, $forcedownload = false) {
         $chemin = BASEPATH . self::$folderStorage . $chemin ;
 
         if (is_file($chemin)) {
@@ -29,14 +44,17 @@ class Storage
             $fichier = substr($chemin, strrpos($chemin, "/")+1) ;
 
 
-            // Vous voulez afficher un pdf
-            header('Content-type: ' . self::getContentType($ext));
-
-            // Il sera nommé downloaded.pdf
-            header('Content-Disposition: ' . self::getContentDisposition($ext) . '; filename="' . $fichier . '"');
+            if ($forcedownload) {
+                header('Content-type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . $fichier . '"');
+            } else {
+                header('Content-type: ' . self::getContentType($ext));
+                header('Content-Disposition: ' . self::getContentDisposition($ext) . '; filename="' . $fichier . '"');
+            }
 
             // Le source du PDF original.pdf
             readfile($chemin);
+            exit();
         } else {
             return false;
         }
@@ -137,7 +155,7 @@ class Storage
 
 
 
-    public static function saveContent($contentTxt, $name = "", $folder = "", $isTemp = false) {
+    public static function saveContent($contentTxt, $name = "", $folder = "", $isTemp = false, $create_folder_with_date = true) {
         if ($isTemp) {
             $folder = "tmp/" . $folder ;
         }
@@ -149,7 +167,9 @@ class Storage
         }
 
         // stockage dans une arborescence par Date
-        $folder .= date("Y/m/d/H/i/s/") ;
+        if ($create_folder_with_date) {
+            $folder .= date("Y/m/d/H/i/s/");
+        }
 
         if (self::startsWith($name, ".") || $name == "") {
             $name = uniqid() . $name ;

@@ -19,4 +19,11 @@ class Storage extends Controller
             return abort(404) ;
         }
     }
+
+    public function forcedownload(Request $request)
+    {
+        if (!StorageHelper::getFile($request->input("chemin"), true)) {
+            return abort(404) ;
+        }
+    }
 }
