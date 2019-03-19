@@ -1,6 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 <div class="row">
     <div class="col-md-12 main_filters_wrap">
         <div class="pull-right form-inline" ng-class="!isEmpty() ? 'bg-warning' : ''">
