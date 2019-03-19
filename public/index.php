@@ -22,6 +22,7 @@ Application::init();
 // load helpers
 require_once SYSDIR . 'helpers/http.php';
 require_once SYSDIR . 'helpers/utilities.php';
+require_once SYSDIR . 'helpers/translate.php';
 
 
 // create directories

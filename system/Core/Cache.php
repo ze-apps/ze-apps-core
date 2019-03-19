@@ -4,6 +4,7 @@ namespace Zeapps\Core;
 
 use Zeapps\Models\Module;
 use MatthiasMullie\Minify;
+use Zeapps\Core\Translation;
 
 class Cache
 {
@@ -37,6 +38,9 @@ class Cache
     {
         /*************** génération du fichier main.js dans le cache *************/
         $mainjs = "";
+
+
+        $mainjs .= Translation::getJsArray() ;
 
 
         if (is_file(BASEPATH . "system/angularjs/main.js")) { // We start with the root of our AngularJS application

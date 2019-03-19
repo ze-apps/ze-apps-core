@@ -13,23 +13,36 @@ class Translation
         self::$defaultLanguage = $langCode ;
     }
 
-    public static function translate($key)
+    public static function translate($key, $language = null)
     {
         if (!self::$langLoaded) {
             self::loadLanguage();
         }
 
-
+        if (!$language) {
+            $language = self::$defaultLanguage ;
+        }
 
         $translation = $key;
 
-        if (isset(self::$lang[self::$defaultLanguage][$key])) {
-            $translation = self::$lang[self::$defaultLanguage][$key];
+        if (isset(self::$lang[$language][$key])) {
+            $translation = self::$lang[$language][$key];
         }
 
 
         return $translation;
     }
+
+    public static function getJsArray() {
+        if (!self::$langLoaded) {
+            self::loadLanguage();
+        }
+
+        return "var arrTranslateJSon = " . json_encode(self::$lang) . ";" ;
+    }
+
+
+
 
 
     private static function loadLanguage()
