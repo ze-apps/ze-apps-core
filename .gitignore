@@ -23,6 +23,7 @@ composer.lock
 
 # app folder
 /app/*
+/App/*
 
 # cache
 /public/cache/*
