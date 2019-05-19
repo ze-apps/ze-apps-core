@@ -8,9 +8,14 @@ use Illuminate\Database\Schema\Blueprint;
 
 class Migration
 {
+
+    public function __construct()
+    {
+        self::checkTableMigrationExists();
+    }
+
+
     public static function chechNewFile($argv = null) {
-
-
         $moduleExclude = array();
 
         if ($argv) {
@@ -48,7 +53,6 @@ class Migration
         if (is_dir(MODULEPATH)) {
             if ($folderModule = opendir(MODULEPATH)) {
                 while (false !== ($folderModuleName = readdir($folderModule))) {
-
                     $dir = MODULEPATH . $folderModuleName;
                     if (is_dir($dir) && $folderModuleName != '.'
                         && $folderModuleName != '..'
@@ -121,33 +125,46 @@ class Migration
         $nbUpdate = 0 ;
         if (is_dir($folderToCheck)) {
             if ($folderMigration = opendir($folderToCheck)) {
+                $fileToMigrate = array();
+
                 while (false !== ($folderItem = readdir($folderMigration))) {
                     $fileMigration = $folderToCheck . $folderItem;
                     if (self::endsWith($fileMigration, '.php')) {
-
                         if (!MigrationModel::where("migration", $folderModuleName . "/" . $folderItem)->get()->first()) {
-                            $migrationClassName = self::getMigrationClassName($folderItem);
-
-                            echo "\033[1;32m " . "Start : " . $folderModuleName . "/" . $folderItem . "\033[0m\n" ;
-
-                            // load php file
-                            require_once $fileMigration;
-
-                            // execute php file
-                            $objMigration = new $migrationClassName;
-                            $objMigration->up();
-
-                            $migrationObj = new MigrationModel;
-                            $migrationObj->migration = $folderModuleName . "/" . $folderItem;
-                            $migrationObj->batch = $idBatch;
-                            $migrationObj->save();
-
-                            $nbUpdate++;
+                            $fileToMigrate[] = $folderItem ;
+                        }
+                    }
+                }
 
 
-                            if (defined('STDIN')) {
-                                echo "\033[1;32m " . "Migrate : " . $folderModuleName . "/" . $folderItem . "\033[0m\n" ;
-                            }
+
+                if (count($fileToMigrate)) {
+                    // to order by date
+                    sort($fileToMigrate);
+
+                    foreach ($fileToMigrate as $folderItem) {
+                        $fileMigration = $folderToCheck . $folderItem;
+                        $migrationClassName = self::getMigrationClassName($folderItem);
+
+                        echo "\033[1;32m " . "Start : " . $folderModuleName . "/" . $folderItem . "\033[0m\n" ;
+
+                        // load php file
+                        require_once $fileMigration;
+
+                        // execute php file
+                        $objMigration = new $migrationClassName;
+                        $objMigration->up();
+
+                        $migrationObj = new MigrationModel;
+                        $migrationObj->migration = $folderModuleName . "/" . $folderItem;
+                        $migrationObj->batch = $idBatch;
+                        $migrationObj->save();
+
+                        $nbUpdate++;
+
+
+                        if (defined('STDIN')) {
+                            echo "\033[1;32m " . "Migrate : " . $folderModuleName . "/" . $folderItem . "\033[0m\n" ;
                         }
                     }
                 }
