@@ -77,9 +77,11 @@ class Cache
 
 
         // minification du contenu
-        $minifier = new Minify\JS();
-        $minifier->add($mainjs);
-        $mainjs = $minifier->minify();
+        if (ENVIRONMENT == 'production') {
+            $minifier = new Minify\JS();
+            $minifier->add($mainjs);
+            $mainjs = $minifier->minify();
+        }
 
 
 
@@ -130,9 +132,11 @@ class Cache
 
 
         // minification du contenu
-        $minifier = new Minify\CSS();
-        $minifier->add($globalCss);
-        $globalCss = $minifier->minify();
+        if (ENVIRONMENT == 'production') {
+            $minifier = new Minify\CSS();
+            $minifier->add($globalCss);
+            $globalCss = $minifier->minify();
+        }
 
 
         $globalCssHeader = "/************\n";
@@ -178,9 +182,11 @@ class Cache
 
 
         // minification du contenu
-        $minifier = new Minify\JS();
-        $minifier->add($globalJs);
-        $globalJs = $minifier->minify();
+        if (ENVIRONMENT == 'production') {
+            $minifier = new Minify\JS();
+            $minifier->add($globalJs);
+            $globalJs = $minifier->minify();
+        }
 
 
         $globalJsHeader = "/************\n";
