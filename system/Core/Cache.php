@@ -11,26 +11,28 @@ class Cache
     private static $_modules;
 
 
-    public static function generateCache()
+    public static function generateCache($forceClearCache = false)
     {
         self::$_modules = Module::where('active', '1')->get();
 
 
-        if (!is_file(PUBLICPATH . 'cache/js/main.js') || ENVIRONMENT != 'production') {
+        if (!is_file(PUBLICPATH . 'cache/js/main.js') || ENVIRONMENT != 'production' || $forceClearCache) {
             self::generateMainJs();
         }
 
-        if (!is_file(PUBLICPATH . 'cache/css/global.css') || ENVIRONMENT != 'production') {
+        if (!is_file(PUBLICPATH . 'cache/css/global.css') || ENVIRONMENT != 'production' || $forceClearCache) {
             self::generateGlobalCss();
         }
 
-        if (!is_file(PUBLICPATH . 'cache/js/global.js') || ENVIRONMENT != 'production') {
+        if (!is_file(PUBLICPATH . 'cache/js/global.js') || ENVIRONMENT != 'production' || $forceClearCache) {
             self::generateGlobalJs();
         }
 
-        self::copyImages();
+        if (ENVIRONMENT != 'production' || $forceClearCache) {
+            self::copyImages();
 
-        self::generateObserver();
+            self::generateObserver();
+        }
     }
 
 

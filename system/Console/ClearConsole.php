@@ -10,7 +10,7 @@ class ClearConsole
 {
     public static function cache($argv = null) {
         // check if migration must lauch
-        Cache::generateCache() ;
+        Cache::generateCache(true) ;
         echo "\033[1;32m " . "Cache clear\033[0m\n";
     }
 }

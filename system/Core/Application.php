@@ -6,15 +6,22 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Zeapps\Core\Migration;
 
+use Config\Constants;
+
 class Application
 {
     public static function init()
     {
-        define(
-            'ENVIRONMENT',
-            isset($_SERVER['CI_ENV']) ?
-                $_SERVER['CI_ENV'] : 'development'
-        );
+
+        if (class_exists('Config\Constants')) {
+            if (isset(Constants::$ENVIRONMENT)) {
+                define( 'ENVIRONMENT', Constants::$ENVIRONMENT);
+            } else {
+                define( 'ENVIRONMENT', 'production');
+            }
+        } else {
+            define( 'ENVIRONMENT', 'production');
+        }
 
         switch (ENVIRONMENT) {
             case 'development':
