@@ -1,6 +1,8 @@
 <?php
 
 
+use Zeapps\Core\Cache;
+
 if (! function_exists('str_ends_with')) {
     function str_ends_with($haystack, $needle)
     {
@@ -12,7 +14,11 @@ if (! function_exists('str_ends_with')) {
 if (! function_exists('clearCache')) {
     function clearCache()
     {
-        rrmdir(FCPATH . 'assets/cache');
+        if (class_exists('Zeapps\Core\Cache')) {
+            rrmdir(FCPATH . 'assets/cache');
+            Cache::generateCache(true) ;
+        }
+
         return true;
     }
 }
