@@ -133,7 +133,11 @@ class User extends Model {
                 $user->i18n = [];
 
                 return $user;
+            } else {
+                return false ;
             }
+        } else {
+            return false ;
         }
     }
 }
