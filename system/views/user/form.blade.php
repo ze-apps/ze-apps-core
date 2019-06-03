@@ -31,7 +31,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    <input type="password" class="form-control" ng-model="form.password_field">
+                    <input type="password" class="form-control" ng-model="form.password">
                 </div>
             </div>
         </div>

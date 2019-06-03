@@ -4,6 +4,7 @@ namespace Zeapps\Models ;
 
 use Illuminate\Database\Eloquent\Model ;
 use Zeapps\Core\Session;
+use Zeapps\Core\ModelHelper;
 
 use Zeapps\Models\Token;
 use Zeapps\Models\Groups;
@@ -11,8 +12,35 @@ use Zeapps\Models\UserGroups;
 
 class User extends Model {
 
-    protected $table = 'zeapps_users';
     private static $typeHash = 'sha256';
+
+    static protected $_table = 'zeapps_users';
+    protected $table;
+
+    protected $fieldModelInfo;
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = self::$_table;
+
+        // stock la liste des champs
+        $this->fieldModelInfo = new ModelHelper();
+        $this->fieldModelInfo->increments('id');
+
+        $this->fieldModelInfo->string('firstname', 50)->default("");
+        $this->fieldModelInfo->string('lastname', 50)->default("");
+        $this->fieldModelInfo->string('email', 255)->default("");
+        $this->fieldModelInfo->string('password', 64)->default("");
+        $this->fieldModelInfo->text('rights')->default("");
+        $this->fieldModelInfo->string('lang', 6)->default("");
+        $this->fieldModelInfo->decimal('hourly_rate', 8, 2)->default(0);
+        $this->fieldModelInfo->integer('id_warehouse', false)->default(0);
+
+        $this->fieldModelInfo->timestamps();
+        $this->fieldModelInfo->softDeletes();
+
+        parent::__construct($attributes);
+    }
 
 
     public static function getTypeHash() {
@@ -139,5 +167,28 @@ class User extends Model {
         } else {
             return false ;
         }
+    }
+
+    public function save(array $options = [], $updatePrice = true, $updateStock = true)
+    {
+        $password = $this->getOriginal("password");
+
+        /******** clean data **********/
+        $this->fieldModelInfo->cleanData($this);
+
+        if ($this->password == "") {
+            $this->password = $password ;
+        } else {
+            if (isset($this->password) && $password != $this->password) {
+                $this->password = hash(self::$typeHash, $this->password) ;
+            }
+        }
+
+        /**** to delete unwanted field ****/
+        $this->fieldModelInfo->removeFieldUnwanted($this);
+
+        $return = parent::save($options);
+
+        return $return;
     }
 }

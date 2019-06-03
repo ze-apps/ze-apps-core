@@ -14,6 +14,7 @@ app.controller("ComZeAppsUsersFormCtrl", ["$scope", "$routeParams", "$location",
 			zhttp.app.user.get($routeParams.id).then(function (response) {
 				if (response.status == 200) {
 					$scope.form = response.data.user;
+					$scope.form.password = '' ;
 					$scope.form.hourly_rate = parseFloat($scope.form.hourly_rate);
                     if($scope.form.rights) {
                         $scope.form.rights_array = angular.fromJson($scope.form.rights);
