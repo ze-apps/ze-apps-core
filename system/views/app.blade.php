@@ -308,8 +308,8 @@
         <script src="/assets/js/ui-sortable-0.13.4/sortable.min.js"></script>
 
         <!-- CACHED FILES -->
-        <script src="/cache/js/main.js" defer></script>
-        <script src="/cache/js/global.js" defer></script>
+        <script src="/cache/js/main.js?serial={{ $numero_serie }}" defer></script>
+        <script src="/cache/js/global.js?serial={{ $numero_serie }}" defer></script>
 
         <!-- Bootstrap -->
         <script src="/assets/bootstrap-3.3.7/js/bootstrap.min.js" defer></script>

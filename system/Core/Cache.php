@@ -159,7 +159,7 @@ class Cache
     {
         $globalJs = "" ;
 
-        /*************** copie des fichiers css *************/
+        /*************** copie des fichiers JS *************/
         $folderApp = BASEPATH;
         if ($folder = opendir($folderApp)) {
             $folderCss = $folderApp . "system/assets/js";
@@ -178,7 +178,7 @@ class Cache
                 }
             }
         }
-        /*************** END : copie des fichiers css *************/
+        /*************** END : copie des fichiers JS *************/
 
 
         // minification du contenu

@@ -109,6 +109,8 @@ class App extends Controller
 
         $data = $this->getMenus();
 
+        $data["numero_serie"] = date("Ymdhis");
+
         return view("app", $data);
     }
 
