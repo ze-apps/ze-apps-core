@@ -13,7 +13,13 @@ class Cache
 
     public static function generateCache($forceClearCache = false)
     {
-        self::$_modules = Module::where('active', '1')->get();
+        self::$_modules = array();
+        $modules = Module::where('active', '1')->get();
+        foreach ($modules as $module) {
+            if (!in_array($module->module_id, self::$_modules)) {
+                self::$_modules[] = $module->module_id;
+            }
+        }
 
 
         if (!is_file(PUBLICPATH . 'cache/js/main.js') || ENVIRONMENT != 'production' || $forceClearCache) {
@@ -61,7 +67,7 @@ class Cache
 
         if (self::$_modules && count(self::$_modules)) {
             for ($i = 0; $i < sizeof(self::$_modules); $i++) {
-                $folderModule = MODULEPATH . self::$_modules[$i]->module_id;
+                $folderModule = MODULEPATH . self::$_modules[$i];
                 if (is_dir($folderModule)) {
                     $folderAngularJs = $folderModule . "/angularjs";
 
@@ -92,7 +98,6 @@ class Cache
 
         $mainjs = $mainjsHeader . $mainjs ;
 
-
         // ecriture du fichier javascript
         recursive_mkdir(PUBLICPATH . "cache/js/");
         file_put_contents(PUBLICPATH . "cache/js/main.js", $mainjs);
@@ -116,7 +121,7 @@ class Cache
 
         if (self::$_modules && count(self::$_modules)) {
             for ($i = 0; $i < count(self::$_modules); $i++) {
-                $folderModule = MODULEPATH . self::$_modules[$i]->module_id;
+                $folderModule = MODULEPATH . self::$_modules[$i];
                 if (is_dir($folderModule)) {
                     $folderCss = $folderModule . "/assets/css";
 
@@ -169,7 +174,7 @@ class Cache
 
         if (self::$_modules && count(self::$_modules)) {
             for ($i = 0; $i < count(self::$_modules); $i++) {
-                $folderModule = MODULEPATH . self::$_modules[$i]->module_id;
+                $folderModule = MODULEPATH . self::$_modules[$i];
                 if (is_dir($folderModule)) {
                     $folderCss = $folderModule . "/assets/js";
 
@@ -237,7 +242,7 @@ class Cache
             $folderApp = MODULEPATH;
             if ($folder = opendir($folderApp)) {
                 for ($i = 0; $i < sizeof(self::$_modules); $i++) {
-                    $folderModule = $folderApp . self::$_modules[$i]->module_id;
+                    $folderModule = $folderApp . self::$_modules[$i];
                     if (is_dir($folderModule) && $folderItem != '.' && $folderItem != '..') {
                         $folderImagesFile = $folderModule . "/assets/images";
                         if (is_dir($folderImagesFile)) {
@@ -278,7 +283,7 @@ class Cache
         $countClass = 0 ;
         if (self::$_modules && count(self::$_modules)) {
             for ($i = 0; $i < count(self::$_modules); $i++) {
-                $folderModule = MODULEPATH . self::$_modules[$i]->module_id;
+                $folderModule = MODULEPATH . self::$_modules[$i];
                 if (is_dir($folderModule)) {
                     $folderObserver = $folderModule . "/Observer/";
 
@@ -294,7 +299,7 @@ class Cache
                                     $nomClass = substr($folderItem, 0, strrpos($folderItem, "."));
 
                                     $countClass++;
-                                    $observers[] = array('App\\' . self::$_modules[$i]->module_id . '\\Observer', $nomClass, $countClass);
+                                    $observers[] = array('App\\' . self::$_modules[$i] . '\\Observer', $nomClass, $countClass);
                                 }
                             }
                         }
