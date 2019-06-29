@@ -12,12 +12,18 @@ class Seed
 
 
         $moduleExclude = array();
+        $moduleOnlyIncude = array();
 
         if ($argv) {
             foreach ($argv as $arg) {
                 $str_exclude = strpos($arg, "exclude:") ;
                 if ($str_exclude === 0) {
                     $moduleExclude[] = substr($arg, strlen("exclude:"));
+                }
+
+                $str_only = strpos($arg, "only:") ;
+                if ($str_only === 0) {
+                    $moduleOnlyIncude[] = substr($arg, strlen("only:"));
                 }
             }
         }
@@ -28,7 +34,9 @@ class Seed
 
         // search Migration Files on System
         $folderToCheck = BASEPATH . "system/Database/Seed/" ;
-        $nbUpdate += self::checkFolder($folderToCheck, "zeapps");
+        if (count($moduleOnlyIncude) == 0) {
+            $nbUpdate += self::checkFolder($folderToCheck, "zeapps");
+        }
 
 
 
@@ -40,7 +48,7 @@ class Seed
                     if (is_dir($dir) && $folderModuleName != '.'
                         && $folderModuleName != '..'
                     ) {
-                        if (!in_array($folderModuleName, $moduleExclude)) {
+                        if (!in_array($folderModuleName, $moduleExclude) && (count($moduleOnlyIncude) == 0 || in_array($folderModuleName, $moduleOnlyIncude))) {
                             $folderToCheck = $dir . "/Database/Seed/";
                             $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName);
                         }
