@@ -7,4 +7,5 @@ $spaceData["background-color"] = "#760692" ;
 $spaceData["menu-header"] = array() ;
 $spaceData["menu-header"]["col"] = 2 ;
 $spaceData["menu-header"]["order"] = 5 ;
+$spaceData["fa-icon"] = "book-reader" ;
 $space[] = $spaceData ;

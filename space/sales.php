@@ -2,7 +2,7 @@
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_sales" ;
 $spaceData["name"] = "Ventes" ;
-$spaceData["fa-icon"] = "line-chart" ;
+$spaceData["fa-icon"] = "chart-line" ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;
 $spaceData["menu-header"] = array() ;
