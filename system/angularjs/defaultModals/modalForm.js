@@ -17,6 +17,11 @@ app.controller("ZeAppsCoreModalFormCtrl", ["$scope", "$uibModalInstance", "optio
     $scope.save = save;
     $scope.cancel = cancel;
 
+    // to execute save action in controller form
+    $scope.form.executeSave = function (data) {
+        $uibModalInstance.close(data);
+    } ;
+
     function save() {
 
         if ($scope.form.zeapps_modal_form_isvalid) {
