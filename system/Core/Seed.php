@@ -9,8 +9,6 @@ use Illuminate\Database\Schema\Blueprint;
 class Seed
 {
     public static function chechNewFile($argv = null) {
-
-
         $moduleExclude = array();
         $moduleOnlyIncude = array();
 

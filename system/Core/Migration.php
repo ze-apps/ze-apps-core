@@ -17,12 +17,18 @@ class Migration
 
     public static function chechNewFile($argv = null) {
         $moduleExclude = array();
+        $moduleOnlyIncude = array();
 
         if ($argv) {
             foreach ($argv as $arg) {
                 $str_exclude = strpos($arg, "exclude:") ;
                 if ($str_exclude === 0) {
                     $moduleExclude[] = substr($arg, strlen("exclude:"));
+                }
+
+                $str_only = strpos($arg, "only:") ;
+                if ($str_only === 0) {
+                    $moduleOnlyIncude[] = substr($arg, strlen("only:"));
                 }
             }
         }
@@ -45,7 +51,9 @@ class Migration
 
         // search Migration Files on System
         $folderToCheck = BASEPATH . "system/Database/Migration/" ;
-        $nbUpdate += self::checkFolder($folderToCheck, "zeapps", $idBatch);
+        if (count($moduleOnlyIncude) == 0) {
+            $nbUpdate += self::checkFolder($folderToCheck, "zeapps", $idBatch);
+        }
 
 
 
@@ -57,7 +65,7 @@ class Migration
                     if (is_dir($dir) && $folderModuleName != '.'
                         && $folderModuleName != '..'
                     ) {
-                        if (!in_array($folderModuleName, $moduleExclude)) {
+                        if (!in_array($folderModuleName, $moduleExclude) && (count($moduleOnlyIncude) == 0 || in_array($folderModuleName, $moduleOnlyIncude))) {
                             $folderToCheck = $dir . "/Database/Migration/";
                             $nbUpdate += self::checkFolder($folderToCheck, $folderModuleName, $idBatch);
                         }
