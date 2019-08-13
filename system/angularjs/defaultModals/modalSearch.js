@@ -24,6 +24,12 @@ app.controller("ZeAppsCoreModalSearchCtrl", ["$scope", "$uibModalInstance", "opt
     $scope.cancel = cancel;
     $scope.loadList = loadList;
 
+    if(option.filters) {
+        angular.forEach(option.filters, function (value, key) {
+            $scope.filter_model[key] = value;
+        });
+    }
+
     loadList() ;
 
     angular.forEach($scope.fields, function(field){
@@ -37,13 +43,6 @@ app.controller("ZeAppsCoreModalSearchCtrl", ["$scope", "$uibModalInstance", "opt
 
     function loadList() {
     	var offset = ($scope.page - 1) * $scope.pageSize;
-
-    	if(option.filters) {
-            angular.forEach(option.filters, function (value, key) {
-                $scope.filter_model[key] = value;
-            });
-        }
-
         var formatted_filters = angular.toJson($scope.filter_model);
 
         option.http.modal($scope.pageSize, offset, formatted_filters).then(function (response) {
