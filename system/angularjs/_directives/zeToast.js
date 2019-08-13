@@ -6,6 +6,7 @@ app.directive("zeToast", ["$timeout", function($timeout){
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close' ng-click='close()'><span aria-hidden='true'>&times;</span></button>"+
                         "{{msg}}"+
                     "</div>",
+        scope:{},
         link: function($scope, elm, attrs){
             var delay;
 
