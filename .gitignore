@@ -5,8 +5,7 @@
 /overide/
 /*_overide/
 
-/public/user/logo.png
-/public/user/logo.jpg
+/public/user/*
 
 # dependencies
 /vendor
