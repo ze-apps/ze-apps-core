@@ -13,8 +13,13 @@ class View implements iResponse
 
     public function __construct($name, $data = array(), $viewPath = BASEPATH . 'system/views/', $cachePath = BASEPATH . "tmp/") {
         if (strpos($viewPath, BASEPATH . "App") === 0) {
+            $pathToOverideFolder = "overide" ;
+            if (env("OVERIDE_FOLDER")) {
+                $pathToOverideFolder = env("OVERIDE_FOLDER") ;
+            }
+
             $pathView = substr($viewPath, strlen(BASEPATH . "App"));
-            $pathViewOveride = BASEPATH . "overide" . $pathView ;
+            $pathViewOveride = BASEPATH . $pathToOverideFolder . $pathView ;
             if (is_file($pathViewOveride . "/" . $name . ".blade.php")) {
                 $viewPath = $pathViewOveride ;
             }
