@@ -7,6 +7,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Zeapps\Core\Migration;
 
 use Config\Constants;
+use Dotenv\Dotenv;
 
 class Application
 {
@@ -44,6 +45,10 @@ class Application
                 echo 'The application environment is not set correctly.';
                 exit(1); // EXIT_ERROR
         }
+
+
+
+
 
 
         // System Folder
@@ -85,6 +90,13 @@ class Application
         define('MODULEPATH', realpath(dirname(__FILE__) . '/../../App/') . '/');
 
         define('PUBLICPATH', realpath(dirname(__FILE__) . '/../../public/') . '/');
+
+
+        // load environnement file
+        if (is_file(BASEPATH . ".env")) {
+            $objDotenv = Dotenv::create(BASEPATH);
+            $objDotenv->load();
+        }
     }
 
     public static function createDirectories()

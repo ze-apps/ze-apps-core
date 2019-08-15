@@ -1,7 +1,13 @@
 <?php
-
-
 use Zeapps\Core\Cache;
+
+if (! function_exists('env')) {
+    function env($param)
+    {
+        return getenv($param);
+    }
+}
+
 
 if (! function_exists('str_ends_with')) {
     function str_ends_with($haystack, $needle)

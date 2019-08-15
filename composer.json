@@ -11,7 +11,8 @@
     "mpdf/mpdf":"7.*",
     "sendinblue/api-v3-sdk":"*",
     "phpoffice/phpspreadsheet":"1.6.*",
-    "matthiasmullie/minify": "1.3.*"
+    "matthiasmullie/minify": "1.3.*",
+    "vlucas/phpdotenv": "*"
   },
   "autoload": {
     "classmap": [

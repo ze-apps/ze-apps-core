@@ -29,3 +29,4 @@ composer.lock
 /public/cache/*
 /public/uploads/*
 /cache/*
+.env
