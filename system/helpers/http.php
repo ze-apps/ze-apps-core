@@ -37,3 +37,11 @@ if (! function_exists('redirect')) {
     }
 }
 
+if (! function_exists('slug_url')) {
+    function slug_url($string)
+    {
+        $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $string);
+        return $slug;
+    }
+}
+
