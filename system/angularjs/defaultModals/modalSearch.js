@@ -9,13 +9,17 @@ listModuleModalFunction.push({
 });
 
 app.controller("ZeAppsCoreModalSearchCtrl", ["$scope", "$uibModalInstance", "option", function($scope, $uibModalInstance, option) {
-
     $scope.title = option.title || "Sélection" ;
     $scope.filters = {
         main: []
     };
     $scope.template = option.template || "";
-    $scope.filter_model = {};
+    if (option.filtermodel != undefined) {
+        $scope.filter_model = option.filtermodel;
+    } else {
+        $scope.filter_model = {};
+    }
+
     $scope.page = 1;
     $scope.pageSize = 15;
     $scope.fields = option.fields;

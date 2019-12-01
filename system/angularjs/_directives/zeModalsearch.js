@@ -8,6 +8,8 @@ app.directive("zeModalsearch", ["zeapps_modal", function (zeapps_modal) {
             fields: '=',
             model: '=',
             filters: '=',
+            filtermodel: '=',
+            labelbutton: '@',
             templateNew: '=',
             title: '@',
             onloadmodal: '=',
@@ -19,12 +21,16 @@ app.directive("zeModalsearch", ["zeapps_modal", function (zeapps_modal) {
             "<button class=\"btn btn-default\" type=\"button\" ng-click=\"clear()\"" +
             "ng-show=\"model != '' && model != undefined\">x" +
             "</button>" +
-            "<button class=\"btn btn-default\" type=\"button\" ng-click='openModal()'>...</button>" +
+            "<button class=\"btn btn-default\" type=\"button\" ng-click='openModal()'>{{labelbutton}}</button>" +
             "</span>" +
             "</div>",
         link: function ($scope) {
             $scope.openModal = openModal;
             $scope.clear = clear;
+
+            if ($scope.labelButton == undefined) {
+                $scope.labelbutton = "..." ;
+            }
 
             function clear() {
                 if ($scope.zeModalsearch() instanceof Function) {
@@ -40,6 +46,7 @@ app.directive("zeModalsearch", ["zeapps_modal", function (zeapps_modal) {
                     fields: $scope.fields,
                     title: $scope.title,
                     filters: $scope.filters,
+                    filtermodel: $scope.filtermodel,
                     template: $scope.templateNew
                 };
 
