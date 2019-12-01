@@ -132,13 +132,7 @@ class User extends Model {
                         }
                     }
 
-
                     $user->rights = json_encode($rights) ;
-
-
-
-
-
                 }
 
                 return $user;
@@ -155,7 +149,7 @@ class User extends Model {
         // verifie si la session est active
         if (Session::get('token')) {
             $user = self::getUserByToken(Session::get('token'));
-            if ($user && count($user) == 1) {
+            if ($user) {
                 $user->password = null;
 
                 $user->i18n = [];
