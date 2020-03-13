@@ -71,7 +71,14 @@ class Storage
     }
 
 
-
+    public static function deleteFile($chemin) {
+        if (trim($chemin) != "" && trim($chemin) != "/" && trim($chemin) != ".." && trim($chemin) != ".") {
+            $chemin = BASEPATH . $chemin;
+            if (is_file($chemin)) {
+                unlink($chemin);
+            }
+        }
+    }
 
 
 
