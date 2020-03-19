@@ -41,16 +41,11 @@ class Email extends Controller
         }
 
 
-
-
-
         $html = "<html><body>" . nl2br($data["content"]) . "</body></html>";
         $text = $data["content"];
         $sender = array() ;//array("name" => "Nicolas Ramel", "email" => "nicolas.ramel@preview-communication.fr");
 
-
-        $data["to"] = str_replace(";", ",", $data["to"]);
-        $tos = explode(",", $data["to"]);
+        $tos = $data["to"];
 
 
         $to = array() ;//array(array("name" => "Nicolas Ramel", "email" => "nicolas.ramel@preview-communication.fr"));
@@ -101,7 +96,11 @@ class Email extends Controller
         echo json_encode("ok");
     }
 
-
+    public function uploadFile() {
+        $file = Storage::uploadFile($_FILES["file"], "", "", true);
+        echo json_encode($file);
+        exit();
+    }
 
 
 

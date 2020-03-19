@@ -8,3 +8,5 @@ Routeur::post('/zeapps/email/send_email_post', 'Zeapps\\Controllers\\Email@sendE
 
 Routeur::get('/zeapps/email/list_partial', 'Zeapps\\Controllers\\Email@list_partial');
 Routeur::get('/zeapps/email/filtre/{module}/{id}', 'Zeapps\\Controllers\\Email@filtre');
+
+Routeur::post("/zeapps/email/file/upload", 'Zeapps\\Controllers\\Email@uploadFile');
