@@ -6,7 +6,7 @@ app.directive('ckEditor', function () {
 
             var configCkeditor = {};
             configCkeditor.toolbar = [
-                [ 'Source', '-', 'Format', 'Bold', 'Italic' ]
+                [ 'Source', '-', 'Format', 'Bold', 'Italic', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
             ];
 
             var ck = CKEDITOR.replace(elm[0], configCkeditor);
