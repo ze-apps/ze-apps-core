@@ -60,15 +60,6 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
         }
 
 
-        $scope.template_selected = -1;
-        $scope.templates = [];
-        if (option.templates) {
-            $scope.templates = option.templates;
-        }
-        $scope.data_templates = [];
-        if (option.data_templates) {
-            $scope.data_templates = option.data_templates;
-        }
         $scope.template_change = function () {
             $scope.attachments = [];
             angular.forEach(default_attachments, function (attachment) {
@@ -112,6 +103,31 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
                 $scope.form.content = default_content;
             }
         };
+
+
+        $scope.data_templates = [];
+        if (option.data_templates) {
+            $scope.data_templates = option.data_templates;
+        }
+
+
+        $scope.template_selected = -1;
+        $scope.templates = [];
+        if (option.templates) {
+            $scope.templates = option.templates;
+
+            var indexTemplate = -1 ;
+            angular.forEach($scope.templates, function(template) {
+                indexTemplate++;
+                if (template.default_template) {
+                    $scope.template_selected = indexTemplate ;
+                    $scope.template_change();
+                }
+            });
+        }
+
+
+
 
         $scope.removeFile = function (index) {
             $scope.attachments.splice(index, 1);
