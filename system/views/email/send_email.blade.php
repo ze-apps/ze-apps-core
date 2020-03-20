@@ -19,14 +19,14 @@
             </div>
 
 
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>Expéditeur</label><br>
                     @{{user.firstname[0]}}. @{{user.lastname}} <@{{user.email}}>
                 </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>Destinataire(s)</label>
                     <div class="row">
@@ -39,10 +39,6 @@
                     </div>
 
                     <table class="table table-striped">
-                        <tr>
-                            <td>Email</td>
-                            <td></td>
-                        </tr>
                         <tr ng-repeat="to in form.to track by $index">
                             <td>@{{ to }}</td>
                             <td class="text-right"><button type="button" class="btn btn-xs btn-danger" ng-click="removeTo($index)"><i class="fa fa-trash"></i></button></td>
@@ -84,10 +80,6 @@
                     @{{errorMsg}}
 
                     <table class="table table-striped">
-                        <tr>
-                            <td>Fichier</td>
-                            <td></td>
-                        </tr>
                         <tr ng-repeat="attachment in attachments track by $index">
                             <td><a ng-href="@{{ attachment.url | trusted }}"
                                                                          target="_blank">

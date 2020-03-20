@@ -1,8 +1,5 @@
 app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$location", "$rootScope", "$http",
 	function ($scope, $routeParams, $location, $rootScope, $http) {
-
-        console.log("lance Email");
-
 		$scope.page = 1;
 		$scope.pageSize = 15;
         $scope.total = 0;
