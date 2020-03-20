@@ -1,5 +1,5 @@
-app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$location", "$rootScope", "$http",
-	function ($scope, $routeParams, $location, $rootScope, $http) {
+app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$location", "$rootScope", "$http", 'zeapps_modal',
+	function ($scope, $routeParams, $location, $rootScope, $http, zeapps_modal) {
 		$scope.page = 1;
 		$scope.pageSize = 15;
         $scope.total = 0;
@@ -20,8 +20,9 @@ app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$loc
                         email.cc = angular.fromJson(email.cc);
                         email.sender = angular.fromJson(email.sender);
                         email.to = angular.fromJson(email.to);
-                    });
 
+                        email.date_send = new Date(email.date_send);
+                    });
 
                     $scope.emails = angular.fromJson(response.data.emails);
                     $scope.total = response.data.total;
@@ -29,8 +30,13 @@ app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$loc
 			});
 		}
 
-        function goTo(id){
-            //$location.url('/ng/com_zeapps_contact/contacts/'+id);
+        function goTo(email){
+		    var options = {};
+            options.email = email ;
+            zeapps_modal.loadModule("zeapps", "email_viewer", options, function (objReturn) {
+                if (objReturn) {
+                }
+            });
         }
 
 	}]);

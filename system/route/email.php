@@ -4,6 +4,8 @@ use Zeapps\Core\Routeur ;
 
 
 Routeur::get('/zeapps/email/send_email', 'Zeapps\\Controllers\\Email@send_email');
+Routeur::get('/zeapps/email/view_email', 'Zeapps\\Controllers\\Email@view_email');
+
 Routeur::post('/zeapps/email/send_email_post', 'Zeapps\\Controllers\\Email@sendEmailPost');
 
 Routeur::get('/zeapps/email/list_partial', 'Zeapps\\Controllers\\Email@list_partial');

@@ -31,6 +31,12 @@ class Email extends Controller
         return view("email/send_email", $data);
     }
 
+    public function view_email()
+    {
+        $data = array();
+        return view("email/view_email", $data);
+    }
+
     public function sendEmailPost() {
         // constitution du tableau
         $data = array();
