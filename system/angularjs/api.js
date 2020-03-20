@@ -25,6 +25,7 @@ app.config(["$provide",
             };
 
 			zeHttp.config = angular.extend(zeHttp.config || {}, {
+				get : get_config,
 				save : save_config
 			});
 
@@ -81,6 +82,9 @@ app.config(["$provide",
 			// CONFIG
 			function save_config(data){
 				return zeHttp.post("/zeapps/config/save", data);
+			}
+			function get_config(id) {
+				return zeHttp.get("/zeapps/config/get/" + id);
 			}
 		}]);
 	}]);

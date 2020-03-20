@@ -323,5 +323,8 @@
         <!-- Full Calendar -->
         <script src="/assets/js/fullcalendar/fullcalendar.min.js" defer></script>
         <script src="/assets/js/fullcalendar/locale-all.js" defer></script>
+
+        <!-- ckeditor -->
+        <script src="/assets/js/ckeditor/ckeditor.js" defer></script>
     </body>
 </html>
