@@ -15,6 +15,7 @@
 /.idea
 .project
 .classpath
+.scannerwork
 
 # System Files
 .DS_Store
