@@ -8,9 +8,15 @@ app.controller("ComZeAppsGroupsCtrl", ["$scope", "zeHttp", "zeapps_modal", "menu
 		$scope.delete = del;
 		$scope.save = save;
 
+		$scope.groups = [];
+		$scope.modules = [];
+
 		loadList() ;
 
 		function loadList() {
+			$scope.groups = [];
+			$scope.modules = [];
+
 			zhttp.app.groups.all().then(function (response) {
 				if (response.status == 200) {
 					$scope.groups = response.data.groups ;
@@ -26,7 +32,7 @@ app.controller("ComZeAppsGroupsCtrl", ["$scope", "zeHttp", "zeapps_modal", "menu
 					$scope.modules = response.data.modules ;
 					angular.forEach($scope.modules, function(module){
 						module.closed = false;
-					})
+					});
 				}
 			});
 		}
@@ -41,7 +47,7 @@ app.controller("ComZeAppsGroupsCtrl", ["$scope", "zeHttp", "zeapps_modal", "menu
                 		if(response.data && response.data != "false"){
                 			objReturn.id = response.data;
 
-                			$scope.groups.push(objReturn);
+							loadList();
 						}
 					});
                 }
@@ -58,7 +64,7 @@ app.controller("ComZeAppsGroupsCtrl", ["$scope", "zeHttp", "zeapps_modal", "menu
 
                     zhttp.app.groups.post(formatted_data).then(function(response){
                         if(response.data && response.data != "false"){
-                        	$scope.groups[$scope.groups.indexOf(group)] = objReturn;
+							loadList();
                         }
                     });
                 }
@@ -67,7 +73,6 @@ app.controller("ComZeAppsGroupsCtrl", ["$scope", "zeHttp", "zeapps_modal", "menu
 
 		function save(group){
 			group.rights = angular.toJson(group.rights_array);
-
 			var formatted_data = angular.toJson(group);
 			zhttp.app.groups.post(formatted_data);
 		}
