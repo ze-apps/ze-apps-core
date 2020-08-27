@@ -44,7 +44,7 @@
                 <tr ng-repeat-end ng-repeat="(right, label) in module.rights" ng-hide="module.closed">
                     <td>@{{::label}}</td>
                     <td ng-repeat="group in groups" class="text-center">
-                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="group.rights_array[module.module_id + '_' + right]" ng-change="save(group)">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="group.rights_array[right]" ng-change="save(group)">
                     </td>
                 </tr>
                 </tbody>

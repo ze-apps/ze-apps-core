@@ -4,6 +4,7 @@ namespace Zeapps\Controllers;
 
 use Zeapps\Core\Controller;
 use Zeapps\Core\Request;
+use Zeapps\Core\Right;
 use Zeapps\Core\Session;
 
 use Zeapps\Models\User as UserModel;
@@ -11,7 +12,7 @@ use Zeapps\Models\UserGroups;
 use Zeapps\Models\Groups;
 use Zeapps\Models\Module;
 use Zeapps\Models\ModuleRights;
-use Zeapps\Models\Token ;
+use Zeapps\Models\Token;
 
 class User extends Controller
 {
@@ -39,7 +40,7 @@ class User extends Controller
         $id = $request->input('id', 0);
 
         if ($user = UserModel::where('id', $id)->first()) {
-            $groupsData = array() ;
+            $groupsData = array();
             if ($user_groups = UserGroups::where('id_user', $user->id)->get()) {
                 foreach ($user_groups as $user_group) {
                     $groupsData[$user_group->id_group] = true;
@@ -55,9 +56,13 @@ class User extends Controller
 
         if ($modules = Module::where('active', 1)->get()) {
             foreach ($modules as $module) {
-                $rights = ModuleRights::where('id_module', $module->id)->get();
-                if ($rights && count($rights)) {
-                    $module->rights = json_decode($rights->rights, true);
+                $rights = [] ;
+                foreach (Right::getInstance()->getRightModule($module->module_id) as $right) {
+                    $rights[$right["id"]] = isset($right["label"])?$right["label"]:"" ;
+                }
+
+                if (count($rights)) {
+                    $module->rights = $rights;
                 } else {
                     $module->rights = false;
                 }
@@ -76,21 +81,24 @@ class User extends Controller
 
     public function get_context()
     {
-        if(!$groups = Groups::orderBy('label')->get()){
+        if (!$groups = Groups::orderBy('label')->get()) {
             $groups = [];
         }
 
-        if($modules = Module::where('active', 1)->get()) {
-            foreach($modules as $module){
-                if($right = ModuleRights::where('id_module', $module->id)->get()) {
-                    $module->rights = json_decode($right->rights, true);
+        if ($modules = Module::where('active', 1)->get()) {
+            foreach ($modules as $module) {
+                $rights = [] ;
+                foreach (Right::getInstance()->getRightModule($module->module_id) as $right) {
+                    $rights[$right["id"]] = isset($right["label"])?$right["label"]:"" ;
                 }
-                else {
+
+                if (count($rights)) {
+                    $module->rights = $rights;
+                } else {
                     $module->rights = false;
                 }
             }
-        }
-        else{
+        } else {
             $modules = [];
         }
 
@@ -110,7 +118,7 @@ class User extends Controller
         $limit = $request->input('limit', 0);
         $offset = $request->input('offset', 0);
 
-        $filters = array() ;
+        $filters = array();
 
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'post') === 0 && stripos($_SERVER['CONTENT_TYPE'], 'application/json') !== FALSE) {
             // POST is actually in json format, do an internal translation
@@ -118,13 +126,13 @@ class User extends Controller
         }
 
 
-        $users_rs = UserModel::orderBy('lastname') ;
+        $users_rs = UserModel::orderBy('lastname');
         foreach ($filters as $key => $value) {
             if (strpos($key, " LIKE")) {
                 $key = str_replace(" LIKE", "", $key);
-                $users_rs = $users_rs->where($key, 'like', '%' . $value . '%') ;
+                $users_rs = $users_rs->where($key, 'like', '%' . $value . '%');
             } else {
-                $users_rs = $users_rs->where($key, $value) ;
+                $users_rs = $users_rs->where($key, $value);
             }
         }
 
@@ -133,7 +141,7 @@ class User extends Controller
 
         $users = $users_rs->limit($limit)->offset($offset)->get();
 
-        if(!$users) {
+        if (!$users) {
             $users = array();
         }
 
@@ -152,27 +160,26 @@ class User extends Controller
             $data = json_decode(file_get_contents('php://input'), true);
         }
 
-        $user = new UserModel() ;
+        $user = new UserModel();
 
         if (isset($data["id"]) && is_numeric($data["id"])) {
             $user = UserModel::where('id', $data["id"])->first();
         }
 
         foreach ($data as $key => $value) {
-            $user->$key = $value ;
+            $user->$key = $value;
         }
-        $user->save() ;
+        $user->save();
 
 
-
-        if(isset($data['groups']) && is_array($data['groups'])){
-            foreach($data['groups'] as $id_group => $value){
-                if($value){
-                    if(!UserGroups::where('id_user', $user->id)->where('id_group', $id_group)->first()) {
-                        $this->user_groups->insert(array(
-                            'id_user' => $user->id,
-                            'id_group' => $id_group
-                        ));
+        if (isset($data['groups']) && is_array($data['groups'])) {
+            foreach ($data['groups'] as $id_group => $value) {
+                if ($value) {
+                    if (!UserGroups::where('id_user', $user->id)->where('id_group', $id_group)->first()) {
+                        $userGroups = new UserGroups();
+                        $userGroups->id_user = $user->id ;
+                        $userGroups->id_group = $id_group ;
+                        $userGroups->save();
                     }
                 } else {
                     UserGroups::where('id_user', $user->id)->where('id_group', $id_group)->delete();

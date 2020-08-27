@@ -87,7 +87,7 @@
 
                             <div ng-repeat="(right, label) in module.rights" ng-hide="module.closed">
                                 <label>
-                                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="form.rights_array[module.module_id + '_' + right]">
+                                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="form.rights_array[right]">
                                     @{{::label}}
                                 </label>
                             </div>

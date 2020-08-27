@@ -103,6 +103,11 @@ class App extends Controller
 
     private function appLoading()
     {
+        // recupère le token de l'utiliseteur
+        // rights
+
+
+
         $this->_modules = Module::where('active', '1')->get();
 
         $this->loadCache();
@@ -141,18 +146,11 @@ class App extends Controller
         $rights = [];
 
         if($user = User::getUserByToken(Session::get('token'))) {
-            if ($groups = Groups::join('zeapps_user_groups', 'zeapps_groups.id', '=', 'zeapps_user_groups.id_group')->where('zeapps_user_groups.id_user', $user->id)->get()) {
-                foreach ($groups as $group) {
-                    if ($group->rights !== "") {
-                        $r = json_decode($group->rights);
-                        foreach ($r as $key => $value) {
-                            if ($value) {
-                                array_push($rights, $key);
-                            }
-                        }
-                    }
+            $userRights = json_decode($user->rights, true);
+            foreach ($userRights as $rightKey =>$rightValue) {
+                if ($rightValue == 1) {
+                    $rights[] = $rightKey;
                 }
-                $rights = array_unique($rights);
             }
         }
 

@@ -110,11 +110,8 @@ class User extends Model {
                         $rights = json_decode($user->rights);
                     }
 
-
                     // Charge les groupes de l'utilisateur
                     $objUserGroups = UserGroups::where("id_user", $user->id)->get() ;
-
-
                     if ($objUserGroups) {
                         foreach ($objUserGroups as $objUserGroup) {
                             $objGroups = Groups::find($objUserGroup->id_group) ;
@@ -123,7 +120,7 @@ class User extends Model {
                                     $rightsGroup = json_decode($objGroups->rights);
 
                                     foreach ($rightsGroup as $key => $value) {
-                                        if (!isset($rights->$key)) {
+                                        if ($value == 1) {
                                             $rights->$key = $value ;
                                         }
                                     }
@@ -131,7 +128,6 @@ class User extends Model {
                             }
                         }
                     }
-
                     $user->rights = json_encode($rights) ;
                 }
 

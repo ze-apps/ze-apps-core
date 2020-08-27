@@ -11,16 +11,6 @@ use Zeapps\Models\User ;
 
 class Auth extends Controller
 {
-    public function test(Request $request) {
-        echo "idCategorie : " . $request->input("idCategorie") . "<br>";
-        echo "idProduit : " . $request->input("idProduit") . "<br>";
-        echo "nomCategorie : " . $request->input("nomCategorie") . "<br>";
-
-        //return redirect('produit', array('idProduit'=>'987', 'nomProduit'=>'monprod')) ;
-        //return redirect('/jfldkqjskl/fjkdqjkqsfljksd') ;
-    }
-
-
     public function index(Request $request)
     {
         // verifie si la session est active
