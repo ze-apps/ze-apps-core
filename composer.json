@@ -5,7 +5,7 @@
   "license": "AGPL",
   "type": "project",
   "require": {
-    "php": ">=7.1.0",
+    "php": ">=7.3",
     "illuminate/database": "5.8.*",
     "illuminate/view": "5.8.*",
     "mpdf/mpdf":"7.*",
