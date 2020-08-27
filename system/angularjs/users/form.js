@@ -9,6 +9,17 @@ app.controller("ComZeAppsUsersFormCtrl", ["$scope", "$routeParams", "$location",
         $scope.enregistrer = enregistrer;
         $scope.annuler = annuler;
 
+        $scope.languages = [];
+
+        zhttp.app.language.all().then(function (response) {
+            if (response.status == 200) {
+                $scope.languages = response.data ;
+            }
+        });
+
+
+
+
         // charge la fiche
         if ($routeParams.id && $routeParams.id != 0) {
             zhttp.app.user.get($routeParams.id).then(function (response) {
@@ -27,7 +38,7 @@ app.controller("ComZeAppsUsersFormCtrl", ["$scope", "$routeParams", "$location",
                     $scope.modules = response.data.modules;
                     angular.forEach($scope.modules, function (module) {
                         module.closed = false;
-                    });x
+                    });
                 }
             });
         } else {

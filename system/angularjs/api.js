@@ -21,6 +21,9 @@ app.config(["$provide",
 					modal : modal_user,
 					post : post_user,
 					del : delete_user
+				},
+				language : {
+					all : getAll_language
 				}
             };
 
@@ -76,6 +79,13 @@ app.config(["$provide",
 			function delete_user(id){
                 return zeHttp.delete("/zeapps/user/delete/" + id);
 			}
+
+
+			// language
+			function getAll_language(){
+				return zeHttp.get("/zeapps/language/all");
+			}
+
 
 
 

@@ -43,7 +43,21 @@
                     <input type="number" class="form-control" ng-model="form.hourly_rate">
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Langue</label><br>
+                    <select ng-model="form.lang" class="form-control">
+                        <option ng-repeat="language in languages" ng-value="language.language_code">@{{ language.name }}</option>
+                    </select>
+                </div>
+            </div>
         </div>
+
+
+
+
+
 
         <div ng-repeat="hook in hooks">
             <div ng-include="hook.template"></div>

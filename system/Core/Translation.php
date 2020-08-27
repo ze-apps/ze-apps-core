@@ -2,11 +2,53 @@
 
 namespace Zeapps\Core;
 
+use Zeapps\Core\Session;
+use Zeapps\Models\User;
+
 class Translation
 {
-    private static $defaultLanguage = 'fr' ;
+    private $langToTransfert = [];
+    private static $defaultLanguage = 'fr-FR' ;
     private static $lang = [];
-    private static $langLoaded = false;
+
+
+
+    /***************** Singleton ****************/
+    private static $_instance = null;
+    public static function getInstance() {
+        if(is_null(self::$_instance)) {
+            self::$_instance = new Translation();
+        }
+        return self::$_instance;
+    }
+    /***************** Fin : Singleton ****************/
+
+
+    public function getLanguage() {
+        if (count($this->langToTransfert) == 0) {
+            self::loadLanguage();
+            $this->langToTransfert = self::$lang ;
+        }
+
+        return $this->langToTransfert ;
+    }
+
+    public function getLanguageCurrentUser() {
+        $language = self::$defaultLanguage ;
+
+        $tokenUser = Session::get('token') ;
+        if ($tokenUser != "") {
+            $user = User::getUserByToken($tokenUser);
+            if ($user) {
+                $language = $user->lang ;
+            }
+        }
+
+        return $language ;
+    }
+
+
+
 
 
     public static function setLanguage($langCode) {
@@ -15,12 +57,11 @@ class Translation
 
     public static function translate($key, $language = null)
     {
-        if (!self::$langLoaded) {
-            self::loadLanguage();
-        }
+        // recupère les traductions
+        self::$lang = self::getInstance()->getLanguage();
 
         if (!$language) {
-            $language = self::$defaultLanguage ;
+            $language = self::getInstance()->getLanguageCurrentUser() ;
         }
 
         $translation = $key;
@@ -34,9 +75,7 @@ class Translation
     }
 
     public static function getJsArray() {
-        if (!self::$langLoaded) {
-            self::loadLanguage();
-        }
+        self::$lang = self::getInstance()->getLanguage();
 
         return "var arrTranslateJSon = " . json_encode(self::$lang) . ";" ;
     }
@@ -47,14 +86,9 @@ class Translation
 
     private static function loadLanguage()
     {
-        self::$langLoaded = true ;
-
-
         // load language from System
         $langDir = SYSDIR . "lang/" ;
         self::getLanguageFromFolder($langDir);
-
-
 
         if (is_dir(MODULEPATH)) {
             if ($folderModule = opendir(MODULEPATH)) {
@@ -80,12 +114,9 @@ class Translation
                     if (is_file($langFile) && $folderItem != '.'
                         && $folderItem != '..'
                     ) {
-
                         $langCode = substr($folderItem, 0, strpos($folderItem, ".")) ;
 
-
                         $dataLanguage = require_once $langFile ;
-
 
                         if (!isset(self::$lang[$langCode])) {
                             self::$lang[$langCode] = array() ;
