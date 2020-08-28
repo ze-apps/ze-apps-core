@@ -10,7 +10,7 @@
 
             <div class="col-md-12" ng-show="templates.length >= 1">
                 <div class="form-group">
-                    <label>Modèle de message</label><br>
+                    <label>{{ __t("Message template") }}</label><br>
                     <select ng-model="template_selected" ng-change="template_change()" class="form-control">
                         <option ng-value="-1">--</option>
                         <option ng-repeat="template in templates" ng-value="$index">@{{ template.name }}</option>
@@ -21,20 +21,20 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Expéditeur</label><br>
+                    <label>{{ __t("Sender") }}</label><br>
                     @{{user.firstname[0]}}. @{{user.lastname}} <@{{user.email}}>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Destinataire(s)</label>
+                    <label>{{ __t("Recipient") }}(s)</label>
                     <div class="row">
                         <div class="col-xs-9">
                             <input type="text" class="form-control" ng-model="form.to_add"/>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-primary btn-sm" ng-click="add_email()">Ajouter</button>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="add_email()">{{ __t("Add") }}</button>
                         </div>
                     </div>
 
@@ -50,25 +50,25 @@
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Sujet</label>
+                    <label>{{ __t("Object") }}</label>
                     <input type="text" class="form-control" ng-model="form.subject"/>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Message</label>
+                    <label>{{ __t("Message") }}</label>
                     <textarea class="form-control" ng-model="form.content" rows="10"></textarea>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Pièce(s) jointe(s)</label>
+                    <label>{{ __t("Attachment(s)") }}</label>
 
                     <button type="file" ngf-select="uploadFiles($file, $invalidFiles)" class="btn btn-success btn-xs"
                             {{-- accept="image/*" ngf-max-height="1000" ngf-max-size="1MB"--}}>
-                        Ajouter
+                        {{ __t("Add") }}
                     </button>
                     <br>
                     <div style="font:smaller">@{{errFile.$error}} @{{errFile.$errorParam}}
@@ -94,6 +94,6 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-danger" type="button" ng-click="cancel()">Annuler</button>
-    <button class="btn btn-success" ng-click="send()">Envoyer</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel()">{{ __t("Cancel") }}</button>
+    <button class="btn btn-success" ng-click="send()">{{ __t("Send") }}</button>
 </div>

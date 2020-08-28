@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_workload" ;
-$spaceData["name"] = "Plan de Charges" ;
+$spaceData["name"] = __t("Workload") ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;
 $spaceData["menu-header"] = array() ;

@@ -1,19 +1,13 @@
 <div ng-controller="ComZeappsEmailListPartialCtrl">
-    <!--<div class="text-center" ng-show="total > pageSize">
-        <ul uib-pagination total-items="total" ng-model="page" items-per-page="pageSize" ng-change="loadList()"
-            class="pagination-sm" boundary-links="true" max-size="15"
-            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
-    </div>-->
-
     <div class="row">
         <div class="col-md-12">
             <table class="table table-hover table-condensed table-responsive" ng-show="emails.length">
                 <thead>
                 <tr>
-                    <th>Destinataire</th>
-                    <th>Objet</th>
-                    <th>Date</th>
-                    <th>Expéditeur</th>
+                    <th>{{ __t("Recipient") }}</th>
+                    <th>{{ __t("Object") }}</th>
+                    <th>{{ __t("Date") }}</th>
+                    <th>{{ __t("Sender") }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -41,10 +35,4 @@
             </table>
         </div>
     </div>
-
-    <!--<div class="text-center" ng-show="total > pageSize">
-        <ul uib-pagination total-items="total" ng-model="page" items-per-page="pageSize" ng-change="loadList()"
-            class="pagination-sm" boundary-links="true" max-size="15"
-            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
-    </div>-->
 </div>

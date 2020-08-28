@@ -9,7 +9,7 @@
             <form>
 
                 <div class="form-group">
-                    <label>Nom</label>
+                    <label>{{ __t("Name") }}</label>
                     <input type="text" class="form-control" ng-model="form.label">
                 </div>
 
@@ -19,6 +19,6 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-danger" type="button" ng-click="cancel()">Annuler</button>
-    <button class="btn btn-success" type="button" ng-click="save()">Valider</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel()">{{ __t("Cancel") }}</button>
+    <button class="btn btn-success" type="button" ng-click="save()">{{ __t("Confirm") }}</button>
 </div>

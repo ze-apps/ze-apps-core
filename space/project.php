@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_project" ;
-$spaceData["name"] = "Projets" ;
+$spaceData["name"] = __t("Projects") ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;
 $spaceData["menu-header"] = array() ;

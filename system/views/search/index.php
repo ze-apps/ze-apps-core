@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<div id="breadcrumb">Résultats de la recherche</div>
+<div id="breadcrumb">{{ __t("Search results") }}</div>
 <div id="content">
 
     <div class="search_module" ng-repeat="(module, categories) in searchResults">

@@ -10,6 +10,13 @@ class TranslateConsole
         $languages = Translation::getInstance()->getLanguage();
 
 
+        // traduction du core
+        self::scanDir(SYSDIR, BASEPATH . "/space/", "CORE", $languages);
+        self::scanDir(SYSDIR, SYSDIR . "/config/", "CORE", $languages);
+        self::scanDir(SYSDIR, SYSDIR . "/views/", "CORE", $languages);
+
+
+
         // recherche dans le fichier VIEW (php) les textes qui n'ont pas été traduit
         if (is_dir(MODULEPATH)) {
             if ($folderModule = opendir(MODULEPATH)) {
@@ -18,14 +25,15 @@ class TranslateConsole
                     if (is_dir($dir) && $folderItem != '.'
                         && $folderItem != '..'
                     ) {
-                        self::scanDir($dir . "/views/", $folderItem, $languages);
+                        self::scanDir($dir, $dir . "/views/", $folderItem, $languages);
+                        self::scanDir($dir, $dir . "/config/", $folderItem, $languages);
                     }
                 }
             }
         }
     }
 
-    private static function scanDir($dossier, $module, &$languages) {
+    private static function scanDir($cheminModule, $dossier, $module, &$languages) {
         if (is_dir($dossier)) {
             if ($folderModule = opendir($dossier)) {
                 while (false !== ($folderItem = readdir($folderModule))) {
@@ -33,7 +41,7 @@ class TranslateConsole
                     if (is_dir($dir) && $folderItem != '.'
                         && $folderItem != '..'
                     ) {
-                        self::scanDir($dir, $module, $languages);
+                        self::scanDir($cheminModule, $dir, $module, $languages);
                     } elseif ($folderItem != '.' && $folderItem != '..'
                     ) {
                         if (self::endsWith($dossier . $folderItem, '.php')) {
@@ -41,14 +49,45 @@ class TranslateConsole
                             $retour = self::getTagValue($contenuFichier);
                             if (count($retour)) {
                                 foreach ($retour as $toTranslate) {
-                                    $firstKey = array_key_first($languages) ;
-                                    if (!isset($languages[$firstKey][$toTranslate])) {
-                                        echo $toTranslate . "\n" ;
+                                    $cleLangue = array_keys($languages);
+                                    foreach ($cleLangue as $langueIso) {
+                                        if (!isset($languages[$langueIso][$toTranslate])) {
+                                            echo $module . " : " . $toTranslate . " (" . $langueIso . ")" . "\n";
 
-                                        // TODO : modifier les fichiers de traduction du module
-                                        // dans le dossier /lang du module
-                                        // recréer le tableau php mais il faut pouvoir le livre et récupérer les anciennes valeurs dedans
-                                        // et actualiser la variable : $languages
+                                            $changementLangue = false;
+
+                                            // recherche le fichier
+                                            $cheminFichierLangue = $cheminModule . "/lang/" . $langueIso . ".php";
+                                            if (is_file($cheminFichierLangue)) {
+                                                $dataLanguage = require $cheminFichierLangue;
+                                                if (!isset($dataLanguage[$toTranslate])) {
+                                                    $dataLanguage[$toTranslate] = $toTranslate;
+                                                    $changementLangue = true;
+                                                }
+                                            } else {
+                                                $dataLanguage = [];
+                                                $dataLanguage[$toTranslate] = $toTranslate;
+                                                $changementLangue = true;
+                                            }
+
+                                            if ($changementLangue) {
+                                                // construction du contenu du fichier
+                                                $contenuFichierTranslate = "<?php\n";
+                                                $contenuFichierTranslate .= "return [\n";
+                                                foreach ($dataLanguage as $keyLangue => $valueLangue) {
+                                                    $contenuFichierTranslate .= "    \"" . str_replace("\"", "\\\"", $keyLangue) . "\" => \"" . str_replace("\"", "\\\"", $valueLangue) . "\",\n";
+                                                }
+                                                $contenuFichierTranslate .= "];";
+
+                                                // ecriture du fichier de langue
+                                                if (!is_dir($cheminModule . "/lang/")) {
+                                                    mkdir($cheminModule . "/lang/");
+                                                }
+                                                file_put_contents($cheminFichierLangue, $contenuFichierTranslate);
+                                            }
+
+                                            $languages[$langueIso][$toTranslate] = $toTranslate ;
+                                        }
                                     }
                                 }
                             }

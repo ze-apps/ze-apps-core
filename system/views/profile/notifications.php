@@ -2,10 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<div id="breadcrumb">Notifications de {{user.firstname+" "+user.lastname}}</div>
+<div id="breadcrumb">{{ __t("Notifications for") }} {{user.firstname+" "+user.lastname}}</div>
 
 <div id="content">
-    <h2>Mes Notifications</h2>
+    <h2>{{ __t("My Notifications") }}</h2>
     <ul class="notifications profile-notifications">
         <li ng-repeat="(moduleName, module) in notifications" ng-class="notification.status"
             ng-style="{'border-color':module.color}">
@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </ul>
         </li>
         <li ng-hide="hasNotifications()" class="no-notifications">
-            Aucune notifications<br>
+            {{ __t("No notification") }}<br>
         </li>
     </ul>
 </div>

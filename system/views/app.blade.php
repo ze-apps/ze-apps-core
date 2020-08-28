@@ -43,7 +43,7 @@
 
             <div id="menu-hover">
                 <div class="essential">
-                    <div class="title">L'essentiel</div>
+                    <div class="title">{{ __t("The essential") }}</div>
                     <div class="url-menu">
                         <ul class="nav">
 
@@ -102,18 +102,18 @@
                     <div class="pull-left">
                         <button type="button" class="btn btn-sm" ze-auth="zeapps_admin">
                             <span class="fa fa-fw fa-shopping-cart" aria-hidden="true"></span>
-                            Extension store
+                            {{ __t("Extension store") }}
                         </button>
                         <button type="button" class="btn btn-sm" ze-auth="zeapps_admin">
                             <span class="fa fa-fw fa-list-ul" aria-hidden="true"></span>
-                            Abonnement
+                            {{ __t("Subscription") }}
                         </button>
                     </div>
 
                     <div class="pull-right">
                         <a href="/ng/com_zeapps/config" class="btn btn-sm" ze-auth="zeapps_admin">
                             <span class="fa fa-fw fa-cogs" aria-hidden="true"></span>
-                            Config
+                            {{ __t("Configuration") }}
                         </a>
                     </div>
 
@@ -127,7 +127,7 @@
                     <div class="content">
                         <div class="menu pointer">
                             <span class="vertical-middle">
-                                menu
+                                {{ __t("menu") }}
                                 <span class="fa fa-caret-down" aria-hidden="true"></span>
                             </span>
                         </div>
@@ -165,7 +165,7 @@
                 <div id="left-menu" ng-class="fullSizedMenu ? '' : 'shrinked'">
                     <div id="full-menu" ng-show="menu == 'essentiel'?true:false" class="app-sale">
                         <div class="title-app" ng-click="toggleMenuSize()">
-                            <span class="menu_title">L'essentiel</span>
+                            <span class="menu_title">{{ __t("The essential") }}</span>
                         </div>
                         <div id="menu-nav">
                             <ul class="nav">
@@ -225,7 +225,7 @@
                         </ul>
                     </li>
                     <li ng-hide="hasUnreadNotifications()" class="no-notifications">
-                        Aucune notification<br>
+                        {{ __t("No notification") }}<br>
                     </li>
                 </ul>
 

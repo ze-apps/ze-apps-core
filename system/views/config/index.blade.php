@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <button class="btn btn-primary" ng-click="emptyCache()">Vider le cache</button>
+            <button class="btn btn-primary" ng-click="emptyCache()">{{ __t("Clear cache") }}</button>
         </div>
     </div>
 
@@ -12,11 +12,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Options de l'application</h3>
+                <h3>{{ __t("Application options") }}</h3>
                 <div class="input-group">
                     <label>
                         <input type="checkbox" ng-model="$root.debug">
-                        Debug Mode
+                        {{ __t("Debug Mode") }}
                     </label>
                 </div>
             </div>

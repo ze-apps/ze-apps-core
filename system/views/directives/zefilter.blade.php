@@ -26,7 +26,7 @@
             </span>
 
             <span ng-click="shownFilter = !shownFilter" ng-show="filters.secondaries.length > 0">
-                <i class="fa fa-filter"></i> Filtres <i class="fa" ng-class="shownFilter ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                <i class="fa fa-filter"></i> {{ __t("Filters") }} <i class="fa" ng-class="shownFilter ? 'fa-caret-up' : 'fa-caret-down'"></i>
             </span>
         </div>
     </div>

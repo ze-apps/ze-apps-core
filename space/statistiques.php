@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_quiltmania_stats" ;
-$spaceData["name"] = "Statistiques" ;
+$spaceData["name"] =  __t("Statistics") ;
 $spaceData["fa-icon"] = "bar-chart" ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;

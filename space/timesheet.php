@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_timesheet" ;
-$spaceData["name"] = "Feuille de temps" ;
+$spaceData["name"] = __t("Timesheet") ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;
 $spaceData["menu-header"] = array() ;

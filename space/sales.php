@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_sales" ;
-$spaceData["name"] = "Ventes" ;
+$spaceData["name"] = __t("Sales") ;
 $spaceData["fa-icon"] = "chart-line" ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;

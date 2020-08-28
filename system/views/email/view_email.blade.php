@@ -9,14 +9,14 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Expéditeur</label><br>
+                    <label>{{ __t("Sender") }}</label><br>
                     @{{ email.sender.email }}
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Destinataire(s)</label>
+                    <label>{{ __t("Recipient") }}(s)</label>
 
                     <table class="table table-striped">
                         <tr ng-repeat="to in email.to track by $index">
@@ -29,14 +29,14 @@
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Message</label>
+                    <label>{{ __t("Message") }}</label>
                     <div ng-bind-html="email.content_text | nl2br"></div>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Pièce(s) jointe(s)</label>
+                    <label>{{ __t("Attachment(s)") }}</label>
                     <table class="table table-striped">
                         <tr ng-repeat="attachment in email.attachment track by $index">
                             <td><a ng-href="/@{{ attachment.file | trusted }}" target="_blank">
@@ -50,5 +50,5 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="cancel()">Fermer</button>
+    <button class="btn btn-primary" type="button" ng-click="cancel()">{{ __t("Close") }}</button>
 </div>

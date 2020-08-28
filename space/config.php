@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_config" ;
-$spaceData["name"] = "Configuration" ;
+$spaceData["name"] = __t("Configuration") ;
 $spaceData["fa-icon"] = "cogs" ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;

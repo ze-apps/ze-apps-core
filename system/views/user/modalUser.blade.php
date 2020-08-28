@@ -9,8 +9,8 @@
             <table class="table table-bordered table-striped table-condensed table-responsive" ng-show="users.length">
                 <thead>
                 <tr>
-                    <th>Prénom</th>
-                    <th>Nom</th>
+                    <th>{{ __t("First name") }}</th>
+                    <th>{{ __t("Last name") }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,5 +25,5 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-danger" type="button" ng-click="cancel()">Annuler</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel()">{{ __t("Cancel") }}</button>
 </div>

@@ -70,7 +70,6 @@ class Translation
             $translation = self::$lang[$language][$key];
         }
 
-
         return $translation;
     }
 

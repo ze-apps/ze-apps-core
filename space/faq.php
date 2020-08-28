@@ -1,7 +1,7 @@
 <?php
 $spaceData = array () ;
 $spaceData["id"] = "com_ze_apps_faq" ;
-$spaceData["name"] = "F.A.Q" ;
+$spaceData["name"] = __t("F.A.Q") ;
 $spaceData["fa-icon"] = "question-circle" ;
 $spaceData["color"] = "#ffffff" ;
 $spaceData["background-color"] = "#760692" ;
