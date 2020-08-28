@@ -6,6 +6,7 @@ use Zeapps\Core\Controller;
 use Zeapps\Core\Request;
 use Zeapps\Core\Session;
 use Zeapps\Core\Cache;
+use Zeapps\Core\Translation;
 
 use Zeapps\Models\Token ;
 use Zeapps\Models\User ;
@@ -103,9 +104,6 @@ class App extends Controller
 
     private function appLoading()
     {
-        // recupère le token de l'utiliseteur
-        // rights
-
 
 
         $this->_modules = Module::where('active', '1')->get();
@@ -115,6 +113,8 @@ class App extends Controller
         $data = $this->getMenus();
 
         $data["numero_serie"] = date("Ymdhis");
+
+        $data["languageCurrentUser"] = Translation::getInstance()->getLanguageCurrentUser();
 
         return view("app", $data);
     }

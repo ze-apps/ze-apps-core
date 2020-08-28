@@ -3,6 +3,8 @@
 namespace Zeapps\Core;
 
 use Zeapps\Core\Blade;
+use Zeapps\Core\Translation;
+use Zeapps\Models\User;
 
 class View implements iResponse
 {
@@ -24,6 +26,26 @@ class View implements iResponse
                 $viewPath = $pathViewOveride ;
             }
         }
+
+
+        // ajout des droits de l'utlisateur
+        $rights = [];
+        $tokenUser = Session::get('token') ;
+        if ($tokenUser != "") {
+            $user = User::getUserByToken($tokenUser);
+            if ($user) {
+                if ($user->rights != "") {
+                    foreach (json_decode($user->rights, true) as $keyRight => $valueRight) {
+                        if ($valueRight) {
+                            $rights[] = $keyRight ;
+                        }
+                    }
+                }
+            }
+        }
+
+        $data["zeapps_right_current_user"] = $rights ;
+
 
         $this->name = $name ;
         $this->_data = $data ;

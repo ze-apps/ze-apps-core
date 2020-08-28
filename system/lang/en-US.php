@@ -99,4 +99,5 @@ return [
     "Fax" => "Fax",
     "Year" => "Year",
     "Comment" => "Comment",
+    "Send an email" => "Send an email",
 ];

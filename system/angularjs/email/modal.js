@@ -7,7 +7,7 @@ listModuleModalFunction.push({
     size: 'lg',
     resolve: {
         titre: function () {
-            return 'Envoyer un email';
+            return __t('Send an email');
         }
     }
 });

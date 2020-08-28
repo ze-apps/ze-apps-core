@@ -7,7 +7,7 @@ listModuleModalFunction.push({
     size: 'lg',
     resolve: {
         titre: function () {
-            return 'Envoyer un email';
+            return __t('Send an email');
         }
     }
 });
@@ -24,8 +24,6 @@ app.controller('ComZeappsViewEmailCtrl', ["$scope", "$uibModalInstance", "$http"
 
             $scope.titre = $scope.email.subject ;
         }
-
-        console.log($scope.email);
 
         $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
