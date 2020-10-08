@@ -135,17 +135,16 @@ class Email extends Controller
 
 
     public function cron() {
-        if (class_exists ( "EmailConfig")) {
+        if (class_exists ( "Config\Email")) {
             $date = new \DateTime();
             $date->sub(new \DateInterval('P3D'));
-
 
             // met en erreur tous les mails qui ont plus de 3 jours
             EmailModel::where("status", 1)->where("date_send", "<", $date->format("Y-m-d H:i:s"))->update(["status" => 3]);
 
 
             // analyse les mails qui sont en attente
-            $emails = EmailModel::where("status", 1)->where("date_send", ">=", $date->format("Y-m-d H:i:s"))->get();
+            $emails = EmailModel::whereIn("status", [1,2])->where("date_send", ">=", $date->format("Y-m-d H:i:s"))->get();
 
             if ($emails) {
 
@@ -159,7 +158,6 @@ class Email extends Controller
                     $config
                 );
 
-
                 foreach ($emails as $email) {
                     // pour récupérer les évenements sur un email
                     try {
@@ -170,10 +168,18 @@ class Email extends Controller
                             $events = $result->getEvents();
 
                             foreach ($events as $event) {
-                                if ($event->getEvent() == "delivered") {
+
+                                if ($email->status == 1 && $event->getEvent() == "delivered") {
                                     $email->status = 2;
                                     $email->save();
                                 }
+
+                                if ($event->getEvent() == "opened") {
+                                    $email->status = 4;
+                                    $email->save();
+                                }
+
+                                
 
 
                                 // recherche si l'évènement a déjà été mémorisé

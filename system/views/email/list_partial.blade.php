@@ -23,9 +23,10 @@
                     <td ng-click="goTo(email)">@{{ email.date_send | date:'dd/MM/yyyy HH:mm:ss' }}</td>
                     <td ng-click="goTo(email)">@{{ email.sender.email }}</td>
                     <td ng-click="goTo(email)">
-                        <i class="fa fa-fw fa-clock-o" style="color:#d28d00" ng-show="email.status==1"></i>
-                        <i class="fa fa-fw fa-envelope" style="color:#12955f" ng-show="email.status==2"></i>
-                        <i class="fa fa-fw fa-exclamation-triangle" style="color:#ce0000" ng-show="email.status==3"></i>
+                        <i class="fas fa-fw fa-clock" style="color:#d28d00" ng-show="email.status==1" title="Envoi en cours"></i>
+                        <i class="fa fa-fw fa-envelope" style="color:#12955f" ng-show="email.status==2" title="Message envoyé"></i>
+                        <i class="fas fa-envelope-open" style="color:#12955f" ng-show="email.status==4" title="Message ouvert"></i>
+                        <i class="fa fa-fw fa-exclamation-triangle" style="color:#ce0000" ng-show="email.status==3" title="Erreur"></i>
                     </td>
                     <td class="text-right">
 
