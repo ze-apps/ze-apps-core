@@ -24,6 +24,9 @@
     <!--<link rel="stylesheet" media="print,screen" href="/assets/css/font-awesome.min.css">-->
     <link rel="stylesheet" media="print,screen" href="/assets/fontawesome-free-5.7.2-web/css/all.css">
 
+    <!-- stepper -->
+    <link rel="stylesheet" media="print,screen" href="/assets/js/stepper/bs-stepper.min.css">
+
 
     <link rel="stylesheet" media="print,screen" href="/assets/css/app.css">
     <link rel="stylesheet" media="print,screen" href="/cache/css/global.css">
@@ -331,6 +334,10 @@
 <!-- Full Calendar -->
 <script src="/assets/js/fullcalendar/fullcalendar.min.js" defer></script>
 <script src="/assets/js/fullcalendar/locale-all.js" defer></script>
+
+<!-- stepper -->
+<script src="/assets/js/stepper/bs-stepper.min.js" defer></script>
+
 
 <!-- ckeditor -->
 <script src="/assets/js/ckeditor/ckeditor.js" defer></script>
