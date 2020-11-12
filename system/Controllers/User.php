@@ -110,7 +110,7 @@ class User extends Controller
 
     public function all()
     {
-        echo json_encode(UserModel::all());
+        echo json_encode(UserModel::orderBy("lastname", "ASC")->get());
     }
 
     public function modal(Request $request)
