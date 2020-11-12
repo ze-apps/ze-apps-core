@@ -160,6 +160,47 @@ class Storage
     }
 
 
+    public static function copyFile($sourceFile, $name = "", $folder = "", $isTemp = false) {
+        $chemin = BASEPATH . $sourceFile ;
+
+        if (is_file($chemin)) {
+            if ($isTemp) {
+                $folder = "tmp/" . $folder ;
+            }
+    
+            $folder = self::$folderStorage . $folder ;
+    
+            if (!self::endsWith($folder, "/")) {
+                $folder .= "/" ;
+            }
+    
+            // stockage dans une arborescence par Date
+            $folder .= date("Y/m/d/H/i/s/") ;
+    
+    
+            if ($name == "") {
+                $ext = substr($sourceFile, strrpos($sourceFile, ".")) ;
+                $name = uniqid() . $ext ;
+            }
+    
+            // creation du dossier
+            self::mkdir($folder) ;
+    
+    
+            // chemin vers le fichier
+            $file = $folder . $name ;
+    
+
+            // copie le fichier
+            copy($chemin, BASEPATH . $file);
+            
+
+            return $file ;
+        } else {
+            return false;
+        }
+    }
+
 
 
     public static function saveContent($contentTxt, $name = "", $folder = "", $isTemp = false, $create_folder_with_date = true) {
