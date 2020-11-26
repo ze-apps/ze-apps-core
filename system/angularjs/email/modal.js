@@ -104,12 +104,10 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
             }
         };
 
-
         $scope.data_templates = [];
         if (option.data_templates) {
             $scope.data_templates = option.data_templates;
         }
-
 
         $scope.template_selected = -1;
         $scope.templates = [];
@@ -126,7 +124,20 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
             });
         }
 
+        
 
+        
+        
+        if (option.id_model_email) {
+            var indexTemplate = -1 ;
+            angular.forEach($scope.templates, function(template) {
+                indexTemplate++;
+                if (template.id && template.id == option.id_model_email) {
+                    $scope.template_selected = indexTemplate ;
+                    $scope.template_change();
+                }
+            });
+        }
 
 
         $scope.removeFile = function (index) {
