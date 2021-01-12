@@ -22,6 +22,17 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>{{ __t("Language") }}</label><br>
+                    <select ng-model="zeapps_default_language" class="form-control">
+                        <option ng-repeat="language in languages" ng-value="language.id">@{{ language.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <form-buttons></form-buttons>
 
     </form>
