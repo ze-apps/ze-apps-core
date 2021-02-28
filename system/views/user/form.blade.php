@@ -39,6 +39,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
+                    <label>{{ __t("Phone") }}</label>
+                    <input type="text" class="form-control" ng-model="form.phone">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
                     <label>{{ __t("Hourly rate") }} (€)</label>
                     <input type="number" class="form-control" ng-model="form.hourly_rate">
                 </div>

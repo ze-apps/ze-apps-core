@@ -31,6 +31,7 @@ class User extends Model {
         $this->fieldModelInfo->string('lastname', 50)->default("");
         $this->fieldModelInfo->string('email', 255)->default("");
         $this->fieldModelInfo->string('password', 64)->default("");
+        $this->fieldModelInfo->string('phone', 20)->default("");
         $this->fieldModelInfo->text('rights')->default("");
         $this->fieldModelInfo->string('lang', 6)->default("");
         $this->fieldModelInfo->decimal('hourly_rate', 8, 2)->default(0);

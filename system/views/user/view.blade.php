@@ -18,6 +18,7 @@
                     <th>{{ __t("First name") }}</th>
                     <th>{{ __t("Last name") }}</th>
                     <th>{{ __t("Email") }}</th>
+                    <th>{{ __t("Phone") }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -26,6 +27,7 @@
                     <td><a href="/ng/com_zeapps/users/view/@{{user.id}}">@{{user.firstname}}</a></td>
                     <td><a href="/ng/com_zeapps/users/view/@{{user.id}}">@{{user.lastname}}</a></td>
                     <td><a href="/ng/com_zeapps/users/view/@{{user.id}}">@{{user.email}}</a></td>
+                    <td><a href="/ng/com_zeapps/users/view/@{{user.id}}">@{{user.phone}}</a></td>
                     <td class="text-right">
                         <ze-btn fa="trash" color="danger" hint="{{ __t("Delete") }}" direction="left" ng-click="delete(user)" ze-confirmation></ze-btn>
                     </td>
