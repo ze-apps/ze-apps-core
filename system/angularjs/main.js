@@ -304,3 +304,8 @@ app.run(["zeHttp", "zeHooks", "$rootScope", function(zhttp, zeHooks, $rootScope)
         }
     });
 }]);
+
+zeappsUrlRandom = function() {
+	var numAleatoire = Math.floor(Math.random() * Math.floor(9999999999999));
+	return "randomnumber=" + numAleatoire ;
+};
