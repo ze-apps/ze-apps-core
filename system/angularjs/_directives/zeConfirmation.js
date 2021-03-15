@@ -4,7 +4,7 @@ app.directive("zeConfirmation", ["$uibModal", function($uibModal){
         terminal: true,
 		restrict: "A",
 		link: function($scope, elm, attrs) {
-	        var msg = attrs.zeConfirmation || "Souhaitez-vous supprimer définitivement cet élément ?";
+	        var msg = attrs.zeConfirmation || __t("Would you like to permanently delete this item?");
 	        var clickAction = attrs.ngClick;
 
             elm.bind('click', function(event){
@@ -17,19 +17,19 @@ app.directive("zeConfirmation", ["$uibModal", function($uibModal){
                     size: "lg",
                     resolve: {
                         titre: function () {
-                            return "Attention";
+                            return __t("Warning");
                         },
                         msg: function () {
                             return msg;
                         },
                         action_danger: function () {
-                            return "Annuler";
+                            return __t("Cancel");
                         },
                         action_primary: function () {
                             return false;
                         },
                         action_success: function () {
-                            return "Confirmer";
+                            return __t("To confirm");
                         }
                     }
                 });

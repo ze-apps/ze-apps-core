@@ -71,7 +71,7 @@ app.factory("zeapps_modal", ["$uibModal", function($uibModal) {
 
 
 		if (moduleTrouve == false) {
-			alert("Impossible de charger le module");
+			alert(__t("Unable to load module"));
 		}
 
 	}

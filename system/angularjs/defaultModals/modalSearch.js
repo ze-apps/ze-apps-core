@@ -9,7 +9,7 @@ listModuleModalFunction.push({
 });
 
 app.controller("ZeAppsCoreModalSearchCtrl", ["$scope", "$uibModalInstance", "option", function($scope, $uibModalInstance, option) {
-    $scope.title = option.title || "Sélection" ;
+    $scope.title = option.title || __t("Selection") ;
     $scope.filters = {
         main: []
     };

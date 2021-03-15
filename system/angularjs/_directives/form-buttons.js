@@ -32,19 +32,19 @@ app.directive("formButtons", ["$uibModal", "$location", function($uibModal, $loc
 						size: "lg",
 						resolve: {
 							titre: function () {
-								return "Attention";
+								return __t("Warning");
 							},
 							msg: function () {
-								return "Des modifications non sauvegardées sont en cours, que voulez-vous faire ?";
+								return __t("Unsaved changes are in progress, what do you want to do?");
 							},
 							action_danger: function () {
-								return "Quitter sans enregistrer";
+								return __t("Exit without saving");
 							},
 							action_primary: function () {
-								return "Rester sur la page";
+								return __t("Stay on the page");
 							},
 							action_success: function () {
-								return "Enregistrer et quitter";
+								return __t("Save and exit");
 							}
 						}
 					});

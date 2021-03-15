@@ -14,6 +14,7 @@ class TranslateConsole
         self::scanDir(SYSDIR, BASEPATH . "/space/", "CORE", $languages);
         self::scanDir(SYSDIR, SYSDIR . "/config/", "CORE", $languages);
         self::scanDir(SYSDIR, SYSDIR . "/views/", "CORE", $languages);
+        self::scanDir(SYSDIR, SYSDIR . "/angularjs/", "CORE", $languages);
 
 
 
@@ -27,6 +28,7 @@ class TranslateConsole
                     ) {
                         self::scanDir($dir, $dir . "/views/", $folderItem, $languages);
                         self::scanDir($dir, $dir . "/config/", $folderItem, $languages);
+                        self::scanDir($dir, $dir . "/angularjs/", $folderItem, $languages);
                     }
                 }
             }
@@ -44,7 +46,7 @@ class TranslateConsole
                         self::scanDir($cheminModule, $dir, $module, $languages);
                     } elseif ($folderItem != '.' && $folderItem != '..'
                     ) {
-                        if (self::endsWith($dossier . $folderItem, '.php')) {
+                        if (self::endsWith($dossier . $folderItem, '.php') || self::endsWith($dossier . $folderItem, '.js')) {
                             $contenuFichier = file_get_contents($dossier . $folderItem) ;
                             $retour = self::getTagValue($contenuFichier);
                             if (count($retour)) {

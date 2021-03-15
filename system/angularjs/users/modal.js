@@ -7,7 +7,7 @@ listModuleModalFunction.push({
 	size:"lg",
 	resolve:{
 		titre: function () {
-			return "Recherche d'un utilisateur";
+			return __t("Searching for a user");
 		}
 	}
 });

@@ -10,7 +10,7 @@ listModuleModalFunction.push({
 
 app.controller("ZeAppsCoreModalFormCtrl", ["$scope", "$uibModalInstance", "option", function($scope, $uibModalInstance, option) {
 
-    $scope.title = option.title || "Création" ;
+    $scope.title = option.title || __t("Creation") ;
     $scope.form = option.edit || {};
     $scope.template = option.template;
 

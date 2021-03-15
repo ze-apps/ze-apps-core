@@ -22,7 +22,7 @@ app.controller("ZeAppsGroupModalCtrl", ["$scope", "$uibModalInstance", "titre", 
 
 	if(option.group){
 		$scope.form = option.group;
-        $scope.titre = "Modifier un groupe";
+        $scope.titre = __t("Modify a group");
 	}
 	else{
 		$scope.form = {};

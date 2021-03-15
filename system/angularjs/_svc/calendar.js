@@ -7,8 +7,8 @@ app.factory("zeCalendar", ["$location", function($location){
             right: "month,basicWeek,listDay"
         },
         buttonText: {
-            listWeek: "Semaine",
-            listDay: "Journée"
+            listWeek: __t("Week"),
+            listDay: __t("Day")
         },
         locale: "fr",
         editable: false,
