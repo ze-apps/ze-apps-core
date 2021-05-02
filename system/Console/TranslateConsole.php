@@ -36,14 +36,6 @@ class TranslateConsole
         }
     }
 
-    public static function getTable() {
-        $languages = Translation::getInstance()->getLanguage();
-        foreach($languages["fr-FR"] as $key=>$value) {
-            echo $key . " : " . $value . "\n" ;
-        }
-        //var_dump($languages) ;
-    }
-
     private static function scanDir($cheminModule, $dossier, $module, &$languages) {
         if (is_dir($dossier)) {
             if ($folderModule = opendir($dossier)) {
