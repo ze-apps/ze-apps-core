@@ -2,6 +2,7 @@
 
 namespace Zeapps\Console;
 
+use Mpdf\Tag\S;
 use Zeapps\Core\Translation;
 
 class TranslateConsole
@@ -33,6 +34,14 @@ class TranslateConsole
                 }
             }
         }
+    }
+
+    public static function getTable() {
+        $languages = Translation::getInstance()->getLanguage();
+        foreach($languages["fr-FR"] as $key=>$value) {
+            echo $key . " : " . $value . "\n" ;
+        }
+        //var_dump($languages) ;
     }
 
     private static function scanDir($cheminModule, $dossier, $module, &$languages) {

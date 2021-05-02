@@ -35,6 +35,10 @@
     <!-- set currentLanguageOfUser -->
     <script>
         var languageCurrentUser = '{{ $languageCurrentUser }}';
+
+        var zeappsLocalDate = '{{ $zeappsLocalDate }}' ;
+        var zeappsLocalCurrency = '{{ $zeappsLocalCurrency }}' ;
+
     </script>
 
 

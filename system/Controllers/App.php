@@ -104,8 +104,6 @@ class App extends Controller
 
     private function appLoading()
     {
-
-
         $this->_modules = Module::where('active', '1')->get();
 
         $this->loadCache();
@@ -115,6 +113,17 @@ class App extends Controller
         $data["numero_serie"] = date("Ymdhis");
 
         $data["languageCurrentUser"] = Translation::getInstance()->getLanguageCurrentUser();
+
+        $data["zeappsLocalDate"] = "fr-FR" ;
+        $data["zeappsLocalCurrency"] = "EUR" ;
+
+        if (env("zeappsLocalDate")) {
+            $data["zeappsLocalDate"] = env("zeappsLocalDate") ;
+        }
+        
+        if (env("zeappsLocalCurrency")) {
+            $data["zeappsLocalCurrency"] = env("zeappsLocalCurrency") ;
+        }
 
         return view("app", $data);
     }
