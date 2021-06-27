@@ -11,6 +11,13 @@ services:
       MYSQL_DATABASE: zeapps
       MYSQL_USER: zeapps
       MYSQL_PASSWORD: zeapps
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_ARBITRARY=1
     
   web:
     depends_on:
