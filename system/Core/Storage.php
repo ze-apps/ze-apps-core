@@ -239,7 +239,7 @@ class Storage
 
 
 
-    public static function getFolder($folder = "") {
+    public static function getFolder($folder = "", $autoDateFolder = true) {
         $folder = self::$folderStorage . $folder ;
 
         if (!self::endsWith($folder, "/")) {
@@ -247,7 +247,9 @@ class Storage
         }
 
         // stockage dans une arborescence par Date
-        $folder .= date("Y/m/d/H/i/s/") ;
+        if ($autoDateFolder) {
+            $folder .= date("Y/m/d/H/i/s/") ;
+        }
 
         // creation du dossier
         self::mkdir($folder) ;
