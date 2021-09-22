@@ -239,7 +239,7 @@ class Storage
 
 
 
-    public static function getFolder($folder = "", $autoDateFolder = true) {
+    public static function getFolder($folder = "", $autoDateFolder = true, $createFolder = true) {
         $folder = self::$folderStorage . $folder ;
 
         if (!self::endsWith($folder, "/")) {
@@ -252,7 +252,9 @@ class Storage
         }
 
         // creation du dossier
-        self::mkdir($folder) ;
+        if ($createFolder) {
+            self::mkdir($folder) ;
+        }
 
         return $folder ;
     }
