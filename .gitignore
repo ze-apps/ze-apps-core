@@ -8,6 +8,8 @@
 
 /public/user/*
 
+update_sh_config.cfg
+
 # dependencies
 /vendor
 
