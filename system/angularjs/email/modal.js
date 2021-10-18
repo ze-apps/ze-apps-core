@@ -67,9 +67,9 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
             });
 
             $scope.form.to = [];
-            angular.forEach(default_to, function (to_contact) {
+            /*angular.forEach(default_to, function (to_contact) {
                 $scope.form.to.push(to_contact);
-            });
+            });*/
 
             if ($scope.template_selected >= 0) {
                 var template = $scope.templates[$scope.template_selected];
