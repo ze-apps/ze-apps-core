@@ -135,7 +135,13 @@
     <div id="ze-header">
         <div id="logo"><a href="/"><img src="/assets/images/logo.png" class="vertical-middle" ng-class="loading()"/></a>
         </div>
-        <div id="search">
+        @php
+            $styleSearch = "";
+            if (isset($_ENV["bgHeaderSearch"])) {
+                $styleSearch = "background-color:#" . $_ENV["bgHeaderSearch"] . ";";
+            }
+        @endphp
+        <div id="search" style="{{ $styleSearch }}">
             <div class="content">
                 <div class="menu pointer">
                             <span class="vertical-middle">
