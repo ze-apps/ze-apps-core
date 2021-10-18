@@ -2,6 +2,7 @@ changed=1
 unDepotMaj=0
 dossierCourant=$(pwd)
 modules=( $dossierCourant )
+parameter=$1
 
 # vide l'écran
 clear
@@ -44,6 +45,10 @@ for module in "${modules[@]}"; do
 		git pull
 	fi
 done
+
+if [ ${parameter:-faux} = "--force" ]; then
+	unDepotMaj=1
+fi
 
 # Une mise à jour a été effectuée
 if [ $unDepotMaj = 1 ]; then
