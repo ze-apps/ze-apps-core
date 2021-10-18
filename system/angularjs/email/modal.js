@@ -67,14 +67,25 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
             });
 
             $scope.form.to = [];
-            /*angular.forEach(default_to, function (to_contact) {
-                $scope.form.to.push(to_contact);
-            });*/
+
+            // insertion des contacts par defaut
+            if ($scope.template_selected == -1) {
+                angular.forEach(default_to, function (to_contact) {
+                    $scope.form.to.push(to_contact);
+                });
+            }
 
             if ($scope.template_selected >= 0) {
-                var template = $scope.templates[$scope.template_selected];
-                var subject = template.subject;
-                var content = template.message;
+                let template = $scope.templates[$scope.template_selected];
+                let subject = template.subject;
+                let content = template.message;
+
+                // insertion des contacts par defaut
+                if (!template.default_to.includes("[excludeOrigin]")) {
+                    angular.forEach(default_to, function (to_contact) {
+                        $scope.form.to.push(to_contact);
+                    });
+                }
 
                 // remplacement des tags par les valeurs transmises
                 angular.forEach($scope.data_templates, function (data_template) {
@@ -92,7 +103,7 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
                 if (template.default_to.trim() != "") {
                     var tab_to = template.default_to.split(",");
                     angular.forEach(tab_to, function (to_contact) {
-                        if (to_contact.trim() != "") {
+                        if (to_contact.trim() != "" && to_contact.trim() != "[excludeOrigin]") {
                             $scope.form.to.push(to_contact.trim());
                         }
                     });
