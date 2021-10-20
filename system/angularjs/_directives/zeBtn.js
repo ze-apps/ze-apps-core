@@ -16,15 +16,17 @@ app.directive("zeBtn", ["$compile", function($compile){
         replace: true,
 		link: {
         	pre: function($scope, elm, attrs){
+                var styleAdd = attrs.styleAdd || "";
+                var classAdd = attrs.classAdd || "";
                 var color = attrs.color || "primary";
                 var fa = attrs.fa || "font-awesome";
                 var hint = attrs.hint || "";
                 var direction = attrs.direction || "right";
                 var alwaysOn = attrs.alwaysOn || false;
 
-				var html = 	"<button type='button' class='btn btn-xs btn-"+color+"'>";
+				var html = 	"<button type='button' class='btn btn-xs btn-"+color+" " + classAdd + "' style='" + styleAdd + "'>";
 
-				if(alwaysOn){
+				if (alwaysOn) {
 				    if(direction === "right"){
                         html += "<i class='fas fa-fw fa-"+fa+"'></i> " + hint;
                     } else {
