@@ -52,7 +52,7 @@ fi
 
 # Une mise à jour a été effectuée
 if [ $unDepotMaj = 1 ]; then
-	echo "un depot a été mis à jour"
+	echo "un depot a été mis à jour : $dossierCourant"
 
 	# retour dans le dossier racine
 	cd $dossierCourant
