@@ -58,7 +58,7 @@ if [ $unDepotMaj = 1 ]; then
 	cd $dossierCourant
 
 	# lancement de composer
-	composer update
+	docker exec $dockerweb php composer.phar update
 	
 	# lancement des mises à jour des entités
 	docker exec $dockerweb php zeapps migrate
