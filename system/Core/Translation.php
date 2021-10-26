@@ -121,9 +121,11 @@ class Translation
                             self::$lang[$langCode] = array() ;
                         }
 
-                        foreach ($dataLanguage as $key => $value) {
-                            if (!isset(self::$lang[$langCode][$key])) {
-                                self::$lang[$langCode][$key] = $value ;
+                        if (is_array($dataLanguage)) {
+                            foreach ($dataLanguage as $key => $value) {
+                                if (!isset(self::$lang[$langCode][$key])) {
+                                    self::$lang[$langCode][$key] = $value ;
+                                }
                             }
                         }
                     }
