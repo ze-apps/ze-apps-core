@@ -23,5 +23,8 @@
       "Config\\": "config/",
       "Cache\\": "cache/"
     }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
   }
 }

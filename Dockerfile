@@ -25,4 +25,6 @@ COPY docker/001-php.ini /usr/local/etc/php/conf.d/001-php.ini
 RUN a2enmod rewrite
 RUN chown -R www-data:www-data /var/www/html
 
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 CMD ["apache2-foreground"]
