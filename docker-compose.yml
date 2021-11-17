@@ -2,6 +2,7 @@ version: '3'
 services:
   db:
     image: mariadb:10.6.2
+    restart: always
     volumes:
       - db_data:/var/lib/mysql
     ports:
@@ -14,12 +15,14 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
+    restart: always
     ports:
       - 8001:80
     environment:
       - PMA_ARBITRARY=1
     
   web:
+    restart: always
     depends_on:
       - db
     build: .
