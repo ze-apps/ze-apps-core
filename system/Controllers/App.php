@@ -37,7 +37,7 @@ class App extends Controller
     }
 
     public function home(){
-        $this->_modules = Module::where('active', '1')->get();
+        $this->_modules = Module::getActiveModule();
 
         $this->loadCache();
 
@@ -104,7 +104,7 @@ class App extends Controller
 
     private function appLoading()
     {
-        $this->_modules = Module::where('active', '1')->get();
+        $this->_modules = Module::getActiveModule();
 
         $this->loadCache();
 

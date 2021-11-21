@@ -14,7 +14,7 @@ class Cache
     public static function generateCache($forceClearCache = false)
     {
         self::$_modules = array();
-        $modules = Module::where('active', '1')->get();
+        $modules = Module::getActiveModule();
         foreach ($modules as $module) {
             if (!in_array($module->module_id, self::$_modules)) {
                 self::$_modules[] = $module->module_id;
@@ -58,7 +58,7 @@ class Cache
 
 
         $folderApp = BASEPATH;
-        if ($folder = opendir($folderApp)) {
+        if (opendir($folderApp)) {
             $folderAngularJs = $folderApp . "system/angularjs";
 
             $mainjs .= self::getContentFolder($folderAngularJs, 'js');
@@ -167,18 +167,18 @@ class Cache
         /*************** copie des fichiers JS *************/
         $folderApp = BASEPATH;
         if ($folder = opendir($folderApp)) {
-            $folderCss = $folderApp . "system/assets/js";
+            $folderJs = $folderApp . "system/assets/js";
 
-            $globalJs .= self::getContentFolder($folderCss, 'js');
+            $globalJs .= self::getContentFolder($folderJs, 'js');
         }
 
         if (self::$_modules && count(self::$_modules)) {
             for ($i = 0; $i < count(self::$_modules); $i++) {
                 $folderModule = MODULEPATH . self::$_modules[$i];
                 if (is_dir($folderModule)) {
-                    $folderCss = $folderModule . "/assets/js";
+                    $folderJs = $folderModule . "/assets/js";
 
-                    $globalJs .= self::getContentFolder($folderCss, 'js');
+                    $globalJs .= self::getContentFolder($folderJs, 'js');
 
                 }
             }

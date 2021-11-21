@@ -54,7 +54,7 @@ class User extends Controller
             $groups = [];
         }
 
-        if ($modules = Module::where('active', 1)->get()) {
+        if ($modules = Module::getActiveModule()) {
             foreach ($modules as $module) {
                 $rights = [] ;
                 foreach (Right::getInstance()->getRightModule($module->module_id) as $right) {
@@ -85,7 +85,7 @@ class User extends Controller
             $groups = [];
         }
 
-        if ($modules = Module::where('active', 1)->get()) {
+        if ($modules = Module::getActiveModule()) {
             foreach ($modules as $module) {
                 $rights = [] ;
                 foreach (Right::getInstance()->getRightModule($module->module_id) as $right) {

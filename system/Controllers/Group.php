@@ -55,7 +55,7 @@ class Group extends Controller
             $groups = [];
         }
 
-        if ($modules = Module::where('active', 1)->get()) {
+        if ($modules = Module::getActiveModule()) {
             foreach ($modules as $module) {
                 $rights = ModuleRights::where('id_module', $module->id)->get();
                 if ($rights && count($rights)) {
@@ -77,7 +77,7 @@ class Group extends Controller
 
     public function all()
     {
-        if ($modules = Module::where('active', 1)->get()) {
+        if ($modules = Module::getActiveModule()) {
             foreach ($modules as $module) {
                 $rights = [] ;
                 foreach (Right::getInstance()->getRightModule($module->module_id) as $right) {

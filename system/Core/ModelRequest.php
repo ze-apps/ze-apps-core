@@ -10,7 +10,7 @@ class ModelRequest
         $tabModel = array() ;
 
 
-        $modules = Module::where('active', '1')->get();
+        $modules = Module::getActiveModule();
 
         for ($i = 0; $i < sizeof($modules); $i++) {
             $folderModule = MODULEPATH . $modules[$i]->module_id . "/Models/";

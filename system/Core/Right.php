@@ -44,7 +44,7 @@ class Right
     public function getRight()
     {
         if (!$this->_rights) {
-            $modules = Module::where('active', '1')->get();
+            $modules = Module::getActiveModule();
 
             /************ charge tous les rights de config ***********/
             $rightZeapps = array();
