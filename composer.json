@@ -8,7 +8,7 @@
     "php": ">=7.3",
     "illuminate/database": "5.8.*",
     "illuminate/view": "5.8.*",
-    "mpdf/mpdf":"8.0.15",
+    "mpdf/mpdf":"8.0.11",
     "sendinblue/api-v3-sdk":"6.1.4",
     "phpoffice/phpspreadsheet":"1.6.*",
     "matthiasmullie/minify": "1.3.*",
