@@ -13,8 +13,8 @@ listModuleModalFunction.push({
 });
 
 
-app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http", "titre", "option", "Upload", '$timeout',
-    function ($scope, $uibModalInstance, $http, titre, option, Upload, $timeout) {
+app.controller('ComZeappsSendEmailCtrl', ["$rootScope", "$scope", "$uibModalInstance", "$http", "titre", "option", "Upload", '$timeout',
+    function ($rootScope, $scope, $uibModalInstance, $http, titre, option, Upload, $timeout) {
         $scope.titre = titre;
 
         var default_to = [];
@@ -60,11 +60,35 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
         }
 
 
+        if ($rootScope.user && $rootScope.user.signature) {
+            if (!$scope.data_templates) {
+                $scope.data_templates = [];
+            }
+            if (!Array.isArray($scope.data_templates)) {
+                $scope.data_templates = [];
+            }
+            $scope.data_templates.push({tag: "[signature]", value: $rootScope.user.signature});
+        }
+
+
         $scope.template_change = function () {
             $scope.attachments = [];
             angular.forEach(default_attachments, function (attachment) {
                 $scope.attachments.push(attachment);
             });
+
+
+            if ($rootScope.user && $rootScope.user.signature) {
+            if (!$scope.data_templates) {
+                $scope.data_templates = [];
+            }
+            if (!Array.isArray($scope.data_templates)) {
+                $scope.data_templates = [];
+            }
+            $scope.data_templates.push({tag: "[signature]", value: $rootScope.user.signature});
+        }
+            
+
 
             $scope.form.to = [];
 
@@ -86,6 +110,8 @@ app.controller('ComZeappsSendEmailCtrl', ["$scope", "$uibModalInstance", "$http"
                         $scope.form.to.push(to_contact);
                     });
                 }
+
+                
 
                 // remplacement des tags par les valeurs transmises
                 angular.forEach($scope.data_templates, function (data_template) {

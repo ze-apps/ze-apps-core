@@ -113,4 +113,5 @@ return [
     "Modify a group" => "Modify a group",
     "Searching for a user" => "Searching for a user",
     "Unable to load module" => "Unable to load module",
+    "Signature" => "Signature",
 ];
