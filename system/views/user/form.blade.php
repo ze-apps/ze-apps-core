@@ -65,6 +65,16 @@
 
 
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>{{ __t("Signature") }}</label>
+                    <textarea class="form-control" rows="8" ng-model="form.signature"></textarea>
+                </div>
+            </div>
+        </div>
+
+
 
 
 
