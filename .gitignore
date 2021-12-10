@@ -6,6 +6,8 @@
 /overide/
 /*_overide/
 
+/docker-compose.yml
+
 /public/user/*
 
 update_sh_config.cfg
