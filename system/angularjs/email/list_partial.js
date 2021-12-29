@@ -8,11 +8,14 @@ app.controller("ComZeappsEmailListPartialCtrl", ["$scope", "$routeParams", "$loc
         $scope.loadList = loadList;
         $scope.goTo = goTo;
 
+        $scope.$on("ComZeappsEmailListPartialCtrlUpdateList", function (event, value) {
+            loadList(true) ;
+        });
+
 		loadList(true) ;
 
 		function loadList(context) {
             $http.get("/zeapps/email/filtre/" + $scope.module + "/" + $scope.id).then(function (response) {
-
 				if (response.status == 200) {
                     angular.forEach(response.data.emails, function (email) {
                         email.attachment = angular.fromJson(email.attachment);

@@ -210,6 +210,7 @@ app.controller('ComZeappsSendEmailCtrl', ["$rootScope", "$scope", "$uibModalInst
 
             $http.post("/zeapps/email/send_email_post", formatted_data).then(function (response) {
                 if (response.data && response.data != "false") {
+                    $rootScope.$broadcast("ComZeappsEmailListPartialCtrlUpdateList", true);
                     $uibModalInstance.close("ok");
                 }
             });
