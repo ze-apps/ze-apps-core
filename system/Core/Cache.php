@@ -51,6 +51,23 @@ class Cache
         $mainjs .= Translation::getJsArray() ;
 
 
+
+
+        // ajoute des variables JS stockées dans le fichier d'environnement
+        if (isset($_ENV["JS_CRM_DEFAULT_DISCOUNT_COMPANY"])) {
+            $mainjs .= "\nJS_CRM_DEFAULT_DISCOUNT_COMPANY=" . $_ENV["JS_CRM_DEFAULT_DISCOUNT_COMPANY"] . ";\n";
+        }
+        if (isset($_ENV["JS_CRM_DEFAULT_MODALITY_COMPANY"])) {
+            $mainjs .= "\nJS_CRM_DEFAULT_MODALITY_COMPANY=" . $_ENV["JS_CRM_DEFAULT_MODALITY_COMPANY"] . ";\n";
+        }
+        if (isset($_ENV["JS_CRM_DEFAULT_ACCOUNT_NUMBER_COMPANY"])) {
+            $mainjs .= "\nJS_CRM_DEFAULT_ACCOUNT_NUMBER_COMPANY='" . $_ENV["JS_CRM_DEFAULT_ACCOUNT_NUMBER_COMPANY"] . "';\n";
+        }
+
+
+
+
+
         if (is_file(BASEPATH . "system/angularjs/main.js")) { // We start with the root of our AngularJS application
             $mainjs .= file_get_contents(BASEPATH . "system/angularjs/main.js");
             $mainjs .= "\n";
