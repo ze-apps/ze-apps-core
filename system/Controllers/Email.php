@@ -148,7 +148,12 @@ class Email extends Controller
 
             if ($emails) {
 
-                $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
+                if (env('apiSendinblue')) {
+                    $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', env('apiSendinblue'));
+                } else {
+                    $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
+                }
+                
 
 
                 $apiInstance = new SendinBlue\Client\Api\SMTPApi(
@@ -167,34 +172,35 @@ class Email extends Controller
                         if (get_class($result) == "SendinBlue\Client\Model\GetEmailEventReport") {
                             $events = $result->getEvents();
 
-                            foreach ($events as $event) {
+                            if ($events) {
+                                foreach ($events as $event) {
+                                    if ($email->status == 1 && $event->getEvent() == "delivered") {
+                                        $email->status = 2;
+                                        $email->save();
+                                    }
 
-                                if ($email->status == 1 && $event->getEvent() == "delivered") {
-                                    $email->status = 2;
-                                    $email->save();
+                                    if ($event->getEvent() == "opened") {
+                                        $email->status = 4;
+                                        $email->save();
+                                    }
+
+                                    
+
+
+                                    // recherche si l'évènement a déjà été mémorisé
+                                    $emailEvent = EmailEvent::where("id_email", $email->id)->where("date_event", $event->getDate()->format("Y-m-d H:i:s"))->where("event", $event->getEvent())->first();
+
+
+                                    // memorise evenement
+                                    if (!$emailEvent) {
+                                        $emailEvent = new EmailEvent();
+                                        $emailEvent->id_email = $email->id;
+                                        $emailEvent->date_event = $event->getDate()->format("Y-m-d H:i:s");
+                                        $emailEvent->event = $event->getEvent();
+                                        $emailEvent->save();
+                                    }
+
                                 }
-
-                                if ($event->getEvent() == "opened") {
-                                    $email->status = 4;
-                                    $email->save();
-                                }
-
-                                
-
-
-                                // recherche si l'évènement a déjà été mémorisé
-                                $emailEvent = EmailEvent::where("id_email", $email->id)->where("date_event", $event->getDate()->format("Y-m-d H:i:s"))->where("event", $event->getEvent())->first();
-
-
-                                // memorise evenement
-                                if (!$emailEvent) {
-                                    $emailEvent = new EmailEvent();
-                                    $emailEvent->id_email = $email->id;
-                                    $emailEvent->date_event = $event->getDate()->format("Y-m-d H:i:s");
-                                    $emailEvent->event = $event->getEvent();
-                                    $emailEvent->save();
-                                }
-
                             }
                         }
                     } catch (Exception $e) {
