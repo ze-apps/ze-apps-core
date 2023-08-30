@@ -2,9 +2,9 @@
 
 namespace Zeapps\Core;
 
-use Config\Email as EmailConfig;
-use SendinBlue;
+use Brevo;
 use GuzzleHttp;
+use Config\Email as EmailConfig;
 
 use Zeapps\Models\Email;
 use Zeapps\Models\EmailModule;
@@ -98,10 +98,10 @@ class Mail
         }
 
 
-        $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
+        $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
 
 
-        $apiInstance = new SendinBlue\Client\Api\SMTPApi(
+        $apiInstance = new Brevo\Client\Api\TransactionalEmailsApi(
         // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
         // This is optional, `GuzzleHttp\Client` will be used as default.
             new GuzzleHttp\Client(),
@@ -109,7 +109,7 @@ class Mail
         );
 
 
-        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail(); // \SendinBlue\Client\Model\SendSmtpEmail | Values to send a transactional email
+        $sendSmtpEmail = new \Brevo\Client\Model\SendSmtpEmail(); // \Brevo\Client\Model\SendSmtpEmail | Values to send a transactional email
         $sendSmtpEmail->setSubject($subject) ;
         $sendSmtpEmail->setHtmlContent($content_html) ;
         $sendSmtpEmail->setTextContent($content_text) ;
@@ -135,7 +135,7 @@ class Mail
             $result = $apiInstance->sendTransacEmail($sendSmtpEmail);
             $id_emailer = $result->getMessageId() ;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Exception when calling SMTPApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
         }
 

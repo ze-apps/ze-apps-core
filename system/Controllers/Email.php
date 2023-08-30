@@ -8,9 +8,9 @@ use Zeapps\Core\Session;
 use Zeapps\Core\Storage;
 use Zeapps\Core\Mail;
 
-use Config\Email as EmailConfig;
-use SendinBlue;
+use Brevo;
 use GuzzleHttp;
+use Config\Email as EmailConfig;
 
 use Zeapps\Core\Event;
 use Zeapps\Models\EmailModule;
@@ -149,14 +149,14 @@ class Email extends Controller
             if ($emails) {
 
                 if (env('apiSendinblue')) {
-                    $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', env('apiSendinblue'));
+                    $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', env('apiSendinblue'));
                 } else {
-                    $config = SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
+                    $config = Brevo\Client\Configuration::getDefaultConfiguration()->setApiKey('api-key', EmailConfig::$sendinblue_api_key_v3);
                 }
                 
 
 
-                $apiInstance = new SendinBlue\Client\Api\SMTPApi(
+                $apiInstance = new Brevo\Client\Api\TransactionalEmailsApi(
                 // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
                 // This is optional, `GuzzleHttp\Client` will be used as default.
                     new GuzzleHttp\Client(),
@@ -169,7 +169,7 @@ class Email extends Controller
                         $result = $apiInstance->getEmailEventReport(50, 0, null, null, null, null, null, null, $email->id_emailer, null);
 
 
-                        if (get_class($result) == "SendinBlue\Client\Model\GetEmailEventReport") {
+                        if (get_class($result) == "Brevo\Client\Model\GetEmailEventReport") {
                             $events = $result->getEvents();
 
                             if ($events) {
@@ -203,7 +203,7 @@ class Email extends Controller
                                 }
                             }
                         }
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         echo 'Exception when calling SMTPApi->getEmailEventReport: ', $e->getMessage(), PHP_EOL;
                     }
                 }
