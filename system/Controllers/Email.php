@@ -135,6 +135,7 @@ class Email extends Controller
 
 
     public function cron() {
+        return ; // desactivé pour le moment car erreur chez Sendinblue
         if (class_exists ( "Config\Email")) {
             $date = new \DateTime();
             $date->sub(new \DateInterval('P3D'));
@@ -209,9 +210,5 @@ class Email extends Controller
                 }
             }
         }
-
-
-
-        //echo "test" ;
     }
 }
